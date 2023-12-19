@@ -1,0 +1,12 @@
+C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Leopotam.ECS\bin\Debug\net6.0\Leopotam.ECS.deps.json
+C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Leopotam.ECS\bin\Debug\net6.0\Leopotam.ECS.dll
+C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Leopotam.ECS\bin\Debug\net6.0\ref\Leopotam.ECS.dll
+C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Leopotam.ECS\bin\Debug\net6.0\Leopotam.ECS.pdb
+C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Leopotam.ECS\obj\Debug\net6.0\Leopotam.ECS.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Leopotam.ECS\obj\Debug\net6.0\Leopotam.ECS.AssemblyInfoInputs.cache
+C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Leopotam.ECS\obj\Debug\net6.0\Leopotam.ECS.AssemblyInfo.cs
+C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Leopotam.ECS\obj\Debug\net6.0\Leopotam.ECS.csproj.CoreCompileInputs.cache
+C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Leopotam.ECS\obj\Debug\net6.0\Leopotam.ECS.dll
+C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Leopotam.ECS\obj\Debug\net6.0\ref\Leopotam.ECS.dll
+C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Leopotam.ECS\obj\Debug\net6.0\Leopotam.ECS.pdb
+C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Leopotam.ECS\obj\Debug\net6.0\Leopotam.ECS.csproj.AssemblyReference.cache

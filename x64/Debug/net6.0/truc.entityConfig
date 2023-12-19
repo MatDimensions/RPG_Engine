@@ -1,0 +1,68 @@
+{
+  "TransformConfig": {
+    "Position": {
+      "X": 400.0,
+      "Y": 300.0
+    },
+    "Rotation": 0.0,
+    "Scale": 1.0
+  },
+  "RendererConfig": {
+    "Sprite": {
+      "Color": {
+        "R": 255,
+        "G": 255,
+        "B": 255,
+        "A": 255
+      },
+      "Texture": {
+        "NativeHandle": 1,
+        "Smooth": false,
+        "Srgb": false,
+        "Repeated": false,
+        "Size": {
+          "X": 30,
+          "Y": 30
+        },
+        "CPointer": {
+          "value": 2316616075840
+        }
+      },
+      "TextureRect": {
+        "Left": 0,
+        "Top": 0,
+        "Width": 30,
+        "Height": 30
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Rotation": 0.0,
+      "Scale": {
+        "X": 1.0,
+        "Y": 1.0
+      },
+      "Origin": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Transform": {},
+      "InverseTransform": {},
+      "CPointer": {
+        "value": 2316615766912
+      }
+    },
+    "Shader": null,
+    "BlendMode": {
+      "ColorSrcFactor": 6,
+      "ColorDstFactor": 7,
+      "ColorEquation": 0,
+      "AlphaSrcFactor": 1,
+      "AlphaDstFactor": 7,
+      "AlphaEquation": 0
+    },
+    "IsTerrain": false,
+    "IsStatic": false
+  }
+}

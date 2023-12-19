@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "k1UwoLHZlH8qeN8r+2n7KkR+VehXPMsgkAGHCNSkLKbKhWi+f1o5mb7honyiTyJXskopIma2QWLJ0amdQs/e/w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\guill\\bureau\\perso\\projets_perso\\SFML_NET\\Test\\Game\\src\\SFML.Audio\\SFML.Audio.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\guill\\.nuget\\packages\\csfml\\2.5.0\\csfml.2.5.0.nupkg.sha512",
+    "C:\\Users\\guill\\.nuget\\packages\\microsoft.build.tasks.git\\1.0.0-beta2-18618-05\\microsoft.build.tasks.git.1.0.0-beta2-18618-05.nupkg.sha512",
+    "C:\\Users\\guill\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\guill\\.nuget\\packages\\microsoft.sourcelink.common\\1.0.0-beta2-18618-05\\microsoft.sourcelink.common.1.0.0-beta2-18618-05.nupkg.sha512",
+    "C:\\Users\\guill\\.nuget\\packages\\microsoft.sourcelink.github\\1.0.0-beta2-18618-05\\microsoft.sourcelink.github.1.0.0-beta2-18618-05.nupkg.sha512",
+    "C:\\Users\\guill\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,76 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "840028ac-b2e3-4de4-a7a1-2bb2338a4775": {
+      "ProjectGuid": "840028ac-b2e3-4de4-a7a1-2bb2338a4775",
+      "DisplayName": "Game",
+      "ColorIndex": 0
+    },
+    "14f33696-c8be-49c1-91f0-0c28b808de9c": {
+      "ProjectGuid": "14f33696-c8be-49c1-91f0-0c28b808de9c",
+      "DisplayName": "SFML.Graphics",
+      "ColorIndex": 1
+    },
+    "c5935f1a-ef35-4b75-a6b7-bff29bda2b92": {
+      "ProjectGuid": "c5935f1a-ef35-4b75-a6b7-bff29bda2b92",
+      "DisplayName": "SFML.Audio",
+      "ColorIndex": 2
+    },
+    "074323c3-273c-4434-96e9-62835517cfcb": {
+      "ProjectGuid": "074323c3-273c-4434-96e9-62835517cfcb",
+      "DisplayName": "Leopotam.ECS",
+      "ColorIndex": 3
+    },
+    "87654969-f4f9-4ff9-a2f1-0c69c9d30299": {
+      "ProjectGuid": "87654969-f4f9-4ff9-a2f1-0c69c9d30299",
+      "DisplayName": "Leopotam.ECS",
+      "ColorIndex": 4
+    },
+    "a52ab015-211d-4420-b9a2-6a6b112acdc4": {
+      "ProjectGuid": "a52ab015-211d-4420-b9a2-6a6b112acdc4",
+      "DisplayName": "SFML.System",
+      "ColorIndex": 5
+    },
+    "211f18b2-198e-4339-9f8b-3fbc35ca09fb": {
+      "ProjectGuid": "211f18b2-198e-4339-9f8b-3fbc35ca09fb",
+      "DisplayName": "Renderer",
+      "ColorIndex": 6
+    },
+    "bc3240f8-4338-4ca9-b2a6-2cc991d2ef8c": {
+      "ProjectGuid": "bc3240f8-4338-4ca9-b2a6-2cc991d2ef8c",
+      "DisplayName": "EngineBase",
+      "ColorIndex": 7
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Fichiers divers",
+      "ColorIndex": -1
+    },
+    "a6141d9b-e614-4c41-be8a-7c3beda632cb": {
+      "ProjectGuid": "a6141d9b-e614-4c41-be8a-7c3beda632cb",
+      "DisplayName": "EngineBase",
+      "ColorIndex": 8
+    },
+    "b1d73c3f-75bb-43d1-8189-d39fa1bdd38a": {
+      "ProjectGuid": "b1d73c3f-75bb-43d1-8189-d39fa1bdd38a",
+      "DisplayName": "Renderer",
+      "ColorIndex": 9
+    },
+    "0627b935-4220-4631-8d77-2493320f2e21": {
+      "ProjectGuid": "0627b935-4220-4631-8d77-2493320f2e21",
+      "DisplayName": "SFML.Window",
+      "ColorIndex": 10
+    },
+    "fee31025-901e-4605-a1ca-d7907148f6f2": {
+      "ProjectGuid": "fee31025-901e-4605-a1ca-d7907148f6f2",
+      "DisplayName": "EngineAPI",
+      "ColorIndex": 11
+    },
+    "f7acbaf8-1de9-475a-b406-9d122315182d": {
+      "ProjectGuid": "f7acbaf8-1de9-475a-b406-9d122315182d",
+      "DisplayName": "EngineMath",
+      "ColorIndex": 12
+    }
+  },
+  "NextColorIndex": 13
+}

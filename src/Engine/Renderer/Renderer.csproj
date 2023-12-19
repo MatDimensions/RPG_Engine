@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<RootNamespace>Engine</RootNamespace>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<Optimize>True</Optimize>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\SFML.System\SFML.System.csproj" />
+		<ProjectReference Include="..\..\SFML.Window\SFML.Window.csproj" />
+		<ProjectReference Include="..\..\SFML.Graphics\SFML.Graphics.csproj" />
+		<ProjectReference Include="..\..\Leopotam.ECS\Leopotam.ECS.csproj" />
+		<ProjectReference Include="..\EngineBase\EngineBase.csproj" />
+	</ItemGroup>
+
+</Project>
