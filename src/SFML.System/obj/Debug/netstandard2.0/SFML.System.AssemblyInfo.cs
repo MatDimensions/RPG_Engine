@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © Laurent Gomila")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("System module of the SFML.Net library")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("2.5.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.5.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.5.0+7b82e221462cf3d027e29166c71a362e38a400d0")]
 [assembly: System.Reflection.AssemblyProductAttribute("SFML.System")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SFML.System")]
 [assembly: System.Reflection.AssemblyVersionAttribute("2.5.0.0")]

@@ -131,6 +131,7 @@ namespace SFML.System
 		/// </summary>
 		/// <returns>String description of the object</returns>
 		////////////////////////////////////////////////////////////
+
 		public override string ToString() => $"[Vector2f] X({X}) Y({Y})";
 
 		////////////////////////////////////////////////////////////

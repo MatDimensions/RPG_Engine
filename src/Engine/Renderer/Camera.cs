@@ -1,15 +1,14 @@
-﻿using SFML.Graphics;
-using SFML.System;
+﻿using SFML.System;
 using System.Runtime.CompilerServices;
 
 namespace Engine
 {
 	public static class Camera
 	{
-		public static void Init(Vector2f center, Vector2u size)
+		public static void Init(Vector2f pos, float fov = 10)
 		{
-			m_view = new View(center, (Vector2f)size);
-			m_position = new Vector2f(0, 0);
+			m_position = pos;
+			m_FOV = fov;
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -25,18 +24,42 @@ namespace Engine
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void SetSize(Vector2u size)
+		public static Vector2f ScreenToWorld(Vector2f screenPos)
 		{
-			m_view.Size = (Vector2f)size;
+			return new Vector2f(
+				(screenPos.X - EngineData.WindowSize.X / 2f) / m_FOV + m_position.X,
+				((screenPos.Y - EngineData.WindowSize.Y / 2f) / m_FOV - m_position.Y) * -1f
+				);
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static View GetView()
+		public static Vector2f ScreenToWorld(Vector2i screenPos)
 		{
-			return m_view;
+			return new Vector2f(
+				(screenPos.X - EngineData.WindowSize.X / 2f) / m_FOV + m_position.X,
+				((screenPos.Y - EngineData.WindowSize.Y / 2f) / m_FOV - m_position.Y) * -1f
+				);
 		}
 
-		private static View m_view;
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Vector2f WorldToScreen(Vector2f worldPos)
+		{
+			return new Vector2f(
+				(worldPos.X - m_position.X) * m_FOV + EngineData.WindowSize.X / 2f,
+				(worldPos.Y + m_position.Y) * m_FOV + EngineData.WindowSize.Y / 2f
+				);
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Vector2f WorldToScreen(Vector2i worldPos)
+		{
+			return new Vector2f(
+				(worldPos.X - m_position.X) * m_FOV + EngineData.WindowSize.X / 2f,
+				(worldPos.Y + m_position.Y) * m_FOV + EngineData.WindowSize.Y / 2f
+				);
+		}
+
 		private static Vector2f m_position;
+		private static float m_FOV;
 	}
 }

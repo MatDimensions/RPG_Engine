@@ -33,15 +33,28 @@ namespace Global
 			config.LoadFromFile("../../truc.entityConfig");
 			config.CreateEntity(world);
 
-			for (int i = 0; i < 2000; i++)
+			/*for (int i = 0; i < 2000; i++)
 			{
 				int entity = config.CreateEntity(world);
 				ref TransformComponent transformComp = ref world.GetPool<TransformComponent>().Get(entity);
-				transformComp.Position = new SFML.System.Vector2f((rand.NextSingle() - 0.5f) * 2f * 800f, (rand.NextSingle() - 0.5f) * 2 * 600f);
+				transformComp.Position = Camera.ScreenToWorld(new SFML.System.Vector2f(rand.NextSingle() * 800f, rand.NextSingle() * 600f));
 				transformComp.Rotation = (rand.NextSingle() - 0.5f) * 2 * 180f;
 				transformComp.Scale = rand.NextSingle() + 1.1f;
-			}
+			}*/
 
+			{
+				int entity = config.CreateEntity(world);
+				ref TransformComponent transformComp = ref world.GetPool<TransformComponent>().Get(entity);
+				transformComp.Position = new Vector2f(0f, 0f);
+
+				entity = config.CreateEntity(world);
+				transformComp = ref world.GetPool<TransformComponent>().Get(entity);
+				transformComp.Position = (Vector2f)EngineData.WindowSize / 2f;
+
+				entity = config.CreateEntity(world);
+				transformComp = ref world.GetPool<TransformComponent>().Get(entity);
+				transformComp.Position = (Vector2f)EngineData.WindowSize;
+			}
 			float truc = 0f;
 			clock.Restart();
 
@@ -54,13 +67,11 @@ namespace Global
 
 				if (Mouse.IsButtonPressed(Mouse.Button.Left))
 				{
-					/*Debug.Log(Mouse.GetPosition(EngineData.Window).ToString());
-					
 					int entity = config.CreateEntity(world);
 					ref TransformComponent transformComp = ref world.GetPool<TransformComponent>().Get(entity);
-					transformComp.Position = (SFML.System.Vector2f)Mouse.GetPosition(EngineData.Window);
+					transformComp.Position = Camera.ScreenToWorld(Mouse.GetPosition(EngineData.Window));
 					transformComp.Rotation = (rand.NextSingle() - 0.5f) * 2 * 180f;
-					transformComp.Scale = rand.NextSingle() + 0.5f;*/
+					transformComp.Scale = rand.NextSingle() + 0.5f;
 				}
 
 				if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
@@ -75,6 +86,15 @@ namespace Global
 				else if (Keyboard.IsKeyPressed(Keyboard.Key.S))
 				{
 					Camera.SetPosition(Camera.GetPosition() + new Vector2f(0, -1f));
+				}
+
+				if (Keyboard.IsKeyPressed(Keyboard.Key.Q))
+				{
+					Camera.SetPosition(Camera.GetPosition() + new Vector2f(-1f, 0f));
+				}
+				else if (Keyboard.IsKeyPressed(Keyboard.Key.D))
+				{
+					Camera.SetPosition(Camera.GetPosition() + new Vector2f(1f, 0f));
 				}
 
 				/*truc += EngineData.DeltaTime;

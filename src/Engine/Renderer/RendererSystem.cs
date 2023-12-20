@@ -53,7 +53,8 @@ namespace Engine
 			m_renderers = new List<int>();
 			m_sortedRenderers = new List<int>();
 
-			scaleVector = new Vector2f(1f, 1f);
+			m_invertVector = new Vector2f(1f, -1f);
+			m_scaleVector = new Vector2f(1f, 1f);
 			m_renderStates = RenderStates.Default;
 
 			m_ecsEventListener = new RendererEcsEventListener(this);
@@ -63,7 +64,6 @@ namespace Engine
 
 		public void Run(IEcsSystems systems)
 		{
-			EngineData.Window.SetView(Camera.GetView());
 			foreach (int entity in m_rendererFilter.Value)
 			{
 				ref RendererComponent rendererComp = ref m_rendererPool.Value.Get(entity);
@@ -129,11 +129,11 @@ namespace Engine
 				return;
 			}
 
-			sprite.Position = transform.Position;
+			sprite.Position = Camera.WorldToScreen(transform.Position * m_invertVector);
 			sprite.Rotation = transform.Rotation;
-			scaleVector.X = transform.Scale;
-			scaleVector.Y = transform.Scale;
-			sprite.Scale = scaleVector;
+			m_scaleVector.X = transform.Scale;
+			m_scaleVector.Y = transform.Scale;
+			sprite.Scale = m_scaleVector;
 		}
 
 		private int IsTerrainRendererAtCorrectIndex(
@@ -352,7 +352,8 @@ namespace Engine
 
 		private List<int> m_sortedRenderers;
 
-		private Vector2f scaleVector;
+		private Vector2f m_invertVector;
+		private Vector2f m_scaleVector;
 		private RenderStates m_renderStates;
 
 		private bool m_haveToResort = true;
