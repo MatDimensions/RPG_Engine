@@ -1,2 +1,6 @@
 Start of the game
-m_renderers count : 2001
+m_renderers count : 2001   at Engine.RendererSystem.SortRenderers() in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Renderer\RendererSystem.cs:line 275
+   at Engine.RendererSystem.Run(IEcsSystems systems) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Renderer\RendererSystem.cs:line 94
+   at Leopotam.EcsLite.EcsSystems.Run() in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Leopotam.ECS\systems.cs:line 152
+   at Global.Program.Main() in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\Game\Program.cs:line 92
+

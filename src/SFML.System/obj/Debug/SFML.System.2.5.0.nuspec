@@ -12,7 +12,7 @@
     <description>System module of the SFML.Net library</description>
     <copyright>Copyright © Laurent Gomila</copyright>
     <tags>sfml sfml.net</tags>
-    <repository type="git" commit="e90e463ce98ab3f64184bcf21230cf8be7a748b0" />
+    <repository type="git" commit="7b82e221462cf3d027e29166c71a362e38a400d0" />
     <dependencies>
       <group targetFramework=".NETStandard2.0">
         <dependency id="CSFML" version="2.5.0" exclude="Build,Analyzers" />
