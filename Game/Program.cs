@@ -20,8 +20,6 @@ namespace Global
 			systems.Inject();
 			systems.Init();
 
-			//ShaderUtility.LoadShader("Machin", fragmentShaderName: "Machin.frag");
-
 			EntityDebugConfig config = new EntityDebugConfig();
 			/*config.RendererConfig.Sprite = SpriteUtility.GetSprite(EngineConfig.DebugSprite);
 			config.RendererConfig.Shader = ShaderUtility.GetShader(EngineConfig.DebugShader);
@@ -33,36 +31,22 @@ namespace Global
 			config.LoadFromFile("../../truc.entityConfig");
 			config.CreateEntity(world);
 
-			/*for (int i = 0; i < 2000; i++)
+			for (int i = 0; i < 2000; i++)
 			{
 				int entity = config.CreateEntity(world);
 				ref TransformComponent transformComp = ref world.GetPool<TransformComponent>().Get(entity);
-				transformComp.Position = Camera.ScreenToWorld(new SFML.System.Vector2f(rand.NextSingle() * 800f, rand.NextSingle() * 600f));
+				transformComp.Position = new SFML.System.Vector2f(rand.NextSingle() * 800f, rand.NextSingle() * 600f);
 				transformComp.Rotation = (rand.NextSingle() - 0.5f) * 2 * 180f;
 				transformComp.Scale = rand.NextSingle() + 1.1f;
-			}*/
-
-			{
-				int entity = config.CreateEntity(world);
-				ref TransformComponent transformComp = ref world.GetPool<TransformComponent>().Get(entity);
-				transformComp.Position = new Vector2f(0f, 0f);
-
-				entity = config.CreateEntity(world);
-				transformComp = ref world.GetPool<TransformComponent>().Get(entity);
-				transformComp.Position = (Vector2f)EngineData.WindowSize / 2f;
-
-				entity = config.CreateEntity(world);
-				transformComp = ref world.GetPool<TransformComponent>().Get(entity);
-				transformComp.Position = (Vector2f)EngineData.WindowSize;
 			}
-			float truc = 0f;
+
 			clock.Restart();
 
 			while (EngineData.Window.IsOpen)
 			{
 				EngineData.DeltaTime = clock.Restart().AsSeconds();
 				int fps = (int)(1f / EngineData.DeltaTime);
-				//Debug.Log("fps : " + fps);
+				Debug.Log("fps : " + fps);
 				EngineData.Window.DispatchEvents();
 
 				if (Mouse.IsButtonPressed(Mouse.Button.Left))
@@ -87,7 +71,6 @@ namespace Global
 				{
 					Camera.SetPosition(Camera.GetPosition() + new Vector2f(0, -1f));
 				}
-
 				if (Keyboard.IsKeyPressed(Keyboard.Key.Q))
 				{
 					Camera.SetPosition(Camera.GetPosition() + new Vector2f(-1f, 0f));
@@ -96,18 +79,6 @@ namespace Global
 				{
 					Camera.SetPosition(Camera.GetPosition() + new Vector2f(1f, 0f));
 				}
-
-				/*truc += EngineData.DeltaTime;
-				if (truc > 10f)
-				{
-					Camera.SetPosition(new Vector2f(800, 600));
-					truc = -10f;
-					Debug.Log("HERE");
-				}
-				if (truc < 0f)
-				{
-					Camera.SetPosition(Vector2f.Zero);
-				}*/
 
 				systems.Run();
 			}

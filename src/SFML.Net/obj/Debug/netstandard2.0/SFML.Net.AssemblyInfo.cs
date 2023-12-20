@@ -18,7 +18,7 @@ using System.Reflection;
     "ides access to windowing, graphics, audio and network.\n\n      This is a meta-pac" +
     "kage that includes all SFML modules.\n    ")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("2.5.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.5.0+7b82e221462cf3d027e29166c71a362e38a400d0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.5.0+0564d3f7453b787f38a563e4713d0dd5eb5ac585")]
 [assembly: System.Reflection.AssemblyProductAttribute("SFML.Net")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SFML.Net")]
 [assembly: System.Reflection.AssemblyVersionAttribute("2.5.0.0")]

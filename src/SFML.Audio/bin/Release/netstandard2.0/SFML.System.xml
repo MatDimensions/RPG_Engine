@@ -409,6 +409,14 @@
             <param name="v">Vector</param>
             <returns>x * v</returns>
         </member>
+        <member name="M:SFML.System.Vector2f.op_Multiply(SFML.System.Vector2f,SFML.System.Vector2f)">
+            <summary>
+            Operator + overload ; multiply two by two each part of the vectors
+            </summary>
+            <param name="v1">First vector</param>
+            <param name="v2">Second vector</param>
+            <returns>v1 + v2</returns>
+        </member>
         <member name="M:SFML.System.Vector2f.op_Division(SFML.System.Vector2f,System.Single)">
             <summary>
             Operator / overload ; divide a vector by a scalar value
@@ -541,6 +549,14 @@
             <param name="v">Vector</param>
             <returns>x * v</returns>
         </member>
+        <member name="M:SFML.System.Vector2i.op_Multiply(SFML.System.Vector2i,SFML.System.Vector2i)">
+            <summary>
+            Operator + overload ; multiply two by two each part of the vectors
+            </summary>
+            <param name="v1">First vector</param>
+            <param name="v2">Second vector</param>
+            <returns>v1 + v2</returns>
+        </member>
         <member name="M:SFML.System.Vector2i.op_Division(SFML.System.Vector2i,System.Int32)">
             <summary>
             Operator / overload ; divide a vector by a scalar value
@@ -665,6 +681,14 @@
             <param name="x">Scalar value</param>
             <param name="v">Vector</param>
             <returns>x * v</returns>
+        </member>
+        <member name="M:SFML.System.Vector2u.op_Multiply(SFML.System.Vector2u,SFML.System.Vector2u)">
+            <summary>
+            Operator + overload ; multiply two by two each part of the vectors
+            </summary>
+            <param name="v1">First vector</param>
+            <param name="v2">Second vector</param>
+            <returns>v1 + v2</returns>
         </member>
         <member name="M:SFML.System.Vector2u.op_Division(SFML.System.Vector2u,System.UInt32)">
             <summary>
