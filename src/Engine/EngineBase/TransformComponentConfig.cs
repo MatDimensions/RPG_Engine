@@ -38,7 +38,6 @@ namespace Engine
 
 		public override void InitComponent(ref TransformComponent component)
 		{
-			base.InitComponent(ref component);
 			component.Position = Position;
 			component.Rotation = Rotation;
 			component.Scale = Scale;

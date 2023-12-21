@@ -30,7 +30,7 @@ namespace Engine
 
 		public virtual void InitComponent(ref T component)
 		{
-
+			throw new NotImplementedException("Initialisation of component of " + this.GetType().UnderlyingSystemType.Name + " isn't implemented");
 		}
 	}
 }

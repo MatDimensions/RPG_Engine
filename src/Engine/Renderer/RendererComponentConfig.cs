@@ -57,7 +57,6 @@ namespace Engine
 
 		public override void InitComponent(ref RendererComponent component)
 		{
-			base.InitComponent(ref component);
 			component.Sprite = Sprite;
 			component.Shader = Shader;
 			component.BlendMode = BlendMode;

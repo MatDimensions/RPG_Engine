@@ -12,11 +12,7 @@
     <description>Audio module of the SFML.Net library</description>
     <copyright>Copyright © Laurent Gomila</copyright>
     <tags>sfml sfml.net</tags>
-<<<<<<< HEAD
-    <repository type="git" commit="7b82e221462cf3d027e29166c71a362e38a400d0" />
-=======
-    <repository type="git" commit="0564d3f7453b787f38a563e4713d0dd5eb5ac585" />
->>>>>>> Camera
+    <repository type="git" commit="482bce59c74518c8855cc525376ea79bb2a3de93" />
     <dependencies>
       <group targetFramework=".NETStandard2.0">
         <dependency id="SFML.Graphics" version="2.5.0" exclude="Build,Analyzers" />

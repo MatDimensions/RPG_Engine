@@ -16,11 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © Laurent Gomila")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Graphics module of the SFML.Net library")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("2.5.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.5.0+7b82e221462cf3d027e29166c71a362e38a400d0")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.5.0+0564d3f7453b787f38a563e4713d0dd5eb5ac585")]
->>>>>>> Camera
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.5.0+482bce59c74518c8855cc525376ea79bb2a3de93")]
 [assembly: System.Reflection.AssemblyProductAttribute("SFML.Graphics")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SFML.Graphics")]
 [assembly: System.Reflection.AssemblyVersionAttribute("2.5.0.0")]
