@@ -25,7 +25,7 @@ namespace Engine
 			return entity;
 		}
 
-		public void LoadFromFile(string file) //where T : EntityConfig
+		public void LoadFromFile(string file)
 		{
 #if DEBUG
 			if (!File.Exists(file))

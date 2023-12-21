@@ -23,7 +23,7 @@ namespace Engine
 			BlendMode = blendMode;
 			Shader = shader;
 			IsTerrain = isTerrain;
-			isStatic = isStatic;
+			IsStatic = isStatic;
 		}
 
 		public override void Serialize(BinaryWriter writer)
