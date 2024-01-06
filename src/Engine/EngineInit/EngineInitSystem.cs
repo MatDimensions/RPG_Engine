@@ -15,7 +15,7 @@ namespace Engine
 			TimerUtility.Init();
 			SpriteUtility.Init();
 			ShaderUtility.Init();
-			Camera.Init(Vector2f.Zero, 1);
+			Camera.Init(Vector2f.Zero, 1f);
 			EngineData.Window = new RenderWindow(new VideoMode(EngineConfig.BaseWindowSize.X, EngineConfig.BaseWindowSize.Y), "Game");
 			EngineData.WindowSize = EngineConfig.BaseWindowSize;
 

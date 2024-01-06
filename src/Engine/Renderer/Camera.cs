@@ -5,7 +5,8 @@ namespace Engine
 {
 	public static class Camera
 	{
-		public static void Init(Vector2f pos, float fov = 10)
+		public static float FOV { get => m_FOV; set => m_FOV = value; }
+		public static void Init(Vector2f pos, float fov = 1f)
 		{
 			m_position = pos;
 			m_FOV = fov;

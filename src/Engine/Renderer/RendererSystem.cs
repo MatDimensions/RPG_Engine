@@ -131,8 +131,8 @@ namespace Engine
 
 			sprite.Position = Camera.WorldToScreen(transform.Position * m_invertVector);
 			sprite.Rotation = transform.Rotation;
-			m_scaleVector.X = transform.Scale;
-			m_scaleVector.Y = transform.Scale;
+			m_scaleVector.X = transform.Scale * Camera.FOV;
+			m_scaleVector.Y = transform.Scale * Camera.FOV;
 			sprite.Scale = m_scaleVector;
 		}
 
