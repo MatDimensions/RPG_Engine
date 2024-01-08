@@ -17,7 +17,7 @@ namespace Engine
 		public static void LogError(string text)
 		{
 			GetStacktrace();
-			text += m_stackTrace;
+			text += "\n" + m_stackTrace;
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.WriteLine("[Error] " + text);
 			m_stringBuilder.AppendLine("[Error] " + text);

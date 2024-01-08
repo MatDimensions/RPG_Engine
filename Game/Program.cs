@@ -20,7 +20,11 @@ namespace Global
 			systems.Inject();
 			systems.Init();
 
-			EntityDebugConfig config = new EntityDebugConfig();
+			AnimatedEnityDebugConfig animEntityConfig = new AnimatedEnityDebugConfig();
+
+			animEntityConfig.CreateEntity(world);
+
+			EntityDebugConfig entityconfig = new EntityDebugConfig();
 			/*config.RendererConfig.Sprite = SpriteUtility.GetSprite(EngineConfig.DebugSprite);
 			config.RendererConfig.Shader = ShaderUtility.GetShader(EngineConfig.DebugShader);
 			config.RendererConfig.BlendMode = SFML.Graphics.BlendMode.Alpha;
@@ -28,12 +32,12 @@ namespace Global
 			config.RendererConfig.IsTerrain = false;
 			config.SaveOnFile("../../truc.entityConfig");*/
 
-			config.LoadFromFile("../../truc.entityConfig");
-			config.CreateEntity(world);
+			entityconfig.LoadFromFile("../../truc.entityConfig");
+			//config.CreateEntity(world);
 
 			for (int i = 0; i < 2000; i++)
 			{
-				int entity = config.CreateEntity(world);
+				int entity = entityconfig.CreateEntity(world);
 				ref TransformComponent transformComp = ref world.GetPool<TransformComponent>().Get(entity);
 				transformComp.Position = new SFML.System.Vector2f(rand.NextSingle() * 800f, rand.NextSingle() * 600f);
 				transformComp.Rotation = (rand.NextSingle() - 0.5f) * 2 * 180f;
@@ -49,14 +53,14 @@ namespace Global
 				Debug.Log("fps : " + fps);
 				EngineData.Window.DispatchEvents();
 
-				if (Mouse.IsButtonPressed(Mouse.Button.Left))
+				/*if (Mouse.IsButtonPressed(Mouse.Button.Left))
 				{
 					int entity = config.CreateEntity(world);
 					ref TransformComponent transformComp = ref world.GetPool<TransformComponent>().Get(entity);
 					transformComp.Position = Camera.ScreenToWorld(Mouse.GetPosition(EngineData.Window));
 					transformComp.Rotation = (rand.NextSingle() - 0.5f) * 2 * 180f;
 					transformComp.Scale = rand.NextSingle() + 0.5f;
-				}
+				}*/
 
 				if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
 				{
@@ -94,6 +98,7 @@ namespace Global
 
 			//systems.Add(new TransformSystem());
 
+			systems.Add(new AnimationSystem());
 			systems.Add(new RendererSystem());
 			systems.Add(new TimerSystem());
 			systems.Add(new ResetTransformSystem());
