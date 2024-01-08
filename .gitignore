@@ -24,3 +24,5 @@ src/SFML.Net/bin/
 src/SFML.Net/obj/
 
 Game/obj/
+
+.vs/
