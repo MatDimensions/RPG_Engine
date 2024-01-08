@@ -1,15 +1,16 @@
 ﻿namespace Engine
 {
-	public class AnimationComponentConfig : ComponentConfig<AnimationComponent>
+	public class TimedAnimationComponentConfig : ComponentConfig<TimedAnimationComponent>
 	{
 		public int SpritesNumber;
-		public float AnimationTime;
 		public float AnimationCurrentTime;
+		public int CurrentSprite;
+		public float[] SpritesTime;
 		public string[] SpritesNames;
 
-		public AnimationComponentConfig() { }
+		public TimedAnimationComponentConfig() { }
 
-		public AnimationComponentConfig(string definitionDirectory, string definitionFile, bool isEngineAnim)
+		public TimedAnimationComponentConfig(string definitionDirectory, string definitionFile, bool isEngineAnim)
 		{
 			m_definitionDirectory = definitionDirectory;
 			m_definitionFile = definitionFile;
@@ -32,11 +33,12 @@
 			Init();
 		}
 
-		public override void InitComponent(ref AnimationComponent component)
+		public override void InitComponent(ref TimedAnimationComponent component)
 		{
 			component.SpritesNumber = SpritesNumber;
-			component.AnimationTime = AnimationTime;
 			component.AnimationCurrentTime = AnimationCurrentTime;
+			component.CurrentSprite = CurrentSprite;
+			component.SpritesTime = SpritesTime;
 			component.SpritesNames = SpritesNames;
 		}
 
@@ -49,22 +51,26 @@
 		{
 			using (StreamReader sr = new StreamReader(EngineConfig.DataDirectory + definitionDirectory + definitionFile))
 			{
-				string firstLine = sr.ReadLine();
-				string[] splitLine = firstLine.Split(' ');
-				if (!splitLine[0].Contains("ANIM"))
+				string line = sr.ReadLine();
+				string[] splitLine = line.Split(' ');
+				if (!splitLine[0].Contains("TIMED_ANIM"))
 				{
-					Debug.LogError("Can't read definition file of anim : " + definitionDirectory + definitionFile);
+					Debug.LogError("Can't read definition file of timed anim : " + definitionDirectory + definitionFile);
 					return;
 				}
 
 				SpritesNumber = int.Parse(splitLine[1]);
-				AnimationTime = float.Parse(splitLine[2]);
 				AnimationCurrentTime = 0f;
+				CurrentSprite = 0;
+				SpritesTime = new float[SpritesNumber];
 				SpritesNames = new string[SpritesNumber];
 				for (int i = 0; i < SpritesNumber; ++i)
 				{
+					line = sr.ReadLine();
+					splitLine = line.Split(' ');
 					SpritesNames[i] = isEngineAnim ? "../" : "";
-					SpritesNames[i] += definitionDirectory + sr.ReadLine();
+					SpritesNames[i] += definitionDirectory + splitLine[0];
+					SpritesTime[i] = float.Parse(splitLine[1]);
 					SpriteUtility.LoadSprite(SpritesNames[i]);
 				}
 			}
