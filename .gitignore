@@ -26,3 +26,13 @@ src/SFML.Net/obj/
 Game/obj/
 
 .vs/
+
+x64/Debug/
+
+src/Leopotam.ECS/obj/
+
+src/SFML.System/obj/
+
+src/SFML.Window/bin/
+
+src/SFML.Window/obj/

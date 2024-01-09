@@ -14,6 +14,8 @@ namespace Global
 			EcsSystems systems = new EcsSystems(world);
 			Random rand = new Random(0);
 			Clock clock = new Clock();
+			float timer = 0f;
+			int frameCount = 0;
 
 			AddSystems(systems);
 
@@ -25,15 +27,14 @@ namespace Global
 			animEntityConfig.CreateEntity(world);
 
 			EntityDebugConfig entityconfig = new EntityDebugConfig();
-			/*config.RendererConfig.Sprite = SpriteUtility.GetSprite(EngineConfig.DebugSprite);
-			config.RendererConfig.Shader = ShaderUtility.GetShader(EngineConfig.DebugShader);
-			config.RendererConfig.BlendMode = SFML.Graphics.BlendMode.Alpha;
-			config.RendererConfig.IsStatic = false;
-			config.RendererConfig.IsTerrain = false;
-			config.SaveOnFile("../../truc.entityConfig");*/
+			/*entityconfig.RendererConfig.Sprite = SpriteUtility.GetSprite(EngineConfig.DebugSprite);
+			entityconfig.RendererConfig.Shader = ShaderUtility.GetShader(EngineConfig.DebugShader);
+			entityconfig.RendererConfig.BlendMode = SFML.Graphics.BlendMode.Alpha;
+			entityconfig.RendererConfig.IsStatic = false;
+			entityconfig.RendererConfig.IsTerrain = false;
+			entityconfig.SaveOnFile("../../truc.entityConfig");*/
 
 			entityconfig.LoadFromFile("../../truc.entityConfig");
-			//config.CreateEntity(world);
 
 			for (int i = 0; i < 2000; i++)
 			{
@@ -49,18 +50,25 @@ namespace Global
 			while (EngineData.Window.IsOpen)
 			{
 				EngineData.DeltaTime = clock.Restart().AsSeconds();
-				int fps = (int)(1f / EngineData.DeltaTime);
-				Debug.Log("fps : " + fps);
+				timer += EngineData.DeltaTime;
+				frameCount++;
+				if (timer >= 1f)
+				{
+					Debug.Log("fps : " + frameCount);
+					frameCount = 0;
+					timer = 0f;
+				}
+
 				EngineData.Window.DispatchEvents();
 
-				/*if (Mouse.IsButtonPressed(Mouse.Button.Left))
+				if (Mouse.IsButtonPressed(Mouse.Button.Left))
 				{
-					int entity = config.CreateEntity(world);
+					int entity = entityconfig.CreateEntity(world);
 					ref TransformComponent transformComp = ref world.GetPool<TransformComponent>().Get(entity);
 					transformComp.Position = Camera.ScreenToWorld(Mouse.GetPosition(EngineData.Window));
 					transformComp.Rotation = (rand.NextSingle() - 0.5f) * 2 * 180f;
 					transformComp.Scale = rand.NextSingle() + 0.5f;
-				}*/
+				}
 
 				if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
 				{
