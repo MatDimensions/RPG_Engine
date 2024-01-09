@@ -23,8 +23,10 @@ namespace Global
 			systems.Init();
 
 			AnimatedEnityDebugConfig animEntityConfig = new AnimatedEnityDebugConfig();
+			float animationTimer = 0f;
 
-			animEntityConfig.CreateEntity(world);
+			ref MultiAnimationComponent multiAnimComp = ref world.GetPool<MultiAnimationComponent>().Get(animEntityConfig.CreateEntity(world));
+			multiAnimComp.CurrentAnimation = "Idle";
 
 			EntityDebugConfig entityconfig = new EntityDebugConfig();
 			/*entityconfig.RendererConfig.Sprite = SpriteUtility.GetSprite(EngineConfig.DebugSprite);
@@ -57,6 +59,17 @@ namespace Global
 					Debug.Log("fps : " + frameCount);
 					frameCount = 0;
 					timer = 0f;
+				}
+
+				animationTimer += EngineData.DeltaTime;
+				if (animationTimer >= 7f && multiAnimComp.CurrentAnimation == "Idle")
+				{
+					multiAnimComp.CurrentAnimation = "Fade";
+				}
+				if (animationTimer > 15f)
+				{
+					multiAnimComp.CurrentAnimation = "Idle";
+					animationTimer = 0f;
 				}
 
 				EngineData.Window.DispatchEvents();
