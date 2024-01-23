@@ -14,7 +14,7 @@
 		<ProjectReference Include="..\src\Engine\EngineBase\EngineBase.csproj" />
 		<ProjectReference Include="..\src\Leopotam.ECS\Leopotam.ECS.csproj" />
 		<ProjectReference Include="..\src\SFML.Graphics\SFML.Graphics.csproj" />
-		<ProjectReference Include="..\src\Engine\Renderer\Renderer.csproj" />
+		<ProjectReference Include="..\src\Engine\Renderer\EngineRenderer.csproj" />
 		<ProjectReference Include="..\src\Engine\EngineInit\EngineAPI.csproj" />
 	</ItemGroup>
 

@@ -24,7 +24,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Leopotam.ECS\Leopotam.ECS.csproj" />
 		<ProjectReference Include="..\EngineBase\EngineBase.csproj" />
-		<ProjectReference Include="..\Renderer\Renderer.csproj" />
+		<ProjectReference Include="..\Renderer\EngineRenderer.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EngineBase", "src\Engine\En
 		{87654969-F4F9-4FF9-A2F1-0C69C9D30299} = {87654969-F4F9-4FF9-A2F1-0C69C9D30299}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Renderer", "src\Engine\Renderer\Renderer.csproj", "{B1D73C3F-75BB-43D1-8189-D39FA1BDD38A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EngineRenderer", "src\Engine\Renderer\EngineRenderer.csproj", "{B1D73C3F-75BB-43D1-8189-D39FA1BDD38A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A52AB015-211D-4420-B9A2-6A6B112ACDC4} = {A52AB015-211D-4420-B9A2-6A6B112ACDC4}
 		{0627B935-4220-4631-8D77-2493320F2E21} = {0627B935-4220-4631-8D77-2493320F2E21}
@@ -53,7 +53,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{AFF428
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalAssemblies", "ExternalAssemblies", "{85FB71FE-C24D-4975-9519-B6D710882B72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EngineMath", "src\Engine\EngineMath\EngineMath.csproj", "{F7ACBAF8-1DE9-475A-B406-9D122315182D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EngineMath", "src\Engine\EngineMath\EngineMath.csproj", "{F7ACBAF8-1DE9-475A-B406-9D122315182D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
