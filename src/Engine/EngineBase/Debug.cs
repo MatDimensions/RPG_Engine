@@ -4,6 +4,7 @@ namespace Engine
 {
 	public static class Debug
 	{
+		public static string StackTrace { get => m_stackTrace; }
 		public static void Init()
 		{
 			if (!Directory.Exists(EngineConfig.DebugFilePath))
@@ -22,6 +23,7 @@ namespace Engine
 			Console.WriteLine("[Error] " + text);
 			m_stringBuilder.AppendLine("[Error] " + text);
 			Console.ResetColor();
+			WriteOnFile();
 		}
 
 		public static void Log(string text)
@@ -30,7 +32,7 @@ namespace Engine
 			Console.WriteLine(text);
 #if GET_STACKTRACE
 			Console.WriteLine(m_stackTrace);
-			text += m_stackTrace;
+			text += "\n" + m_stackTrace;
 #endif
 			m_stringBuilder.AppendLine(text);
 		}
@@ -43,7 +45,7 @@ namespace Engine
 #if GET_STACKTRACE
 			Console.WriteLine(m_stackTrace);
 #endif
-			text += m_stackTrace;
+			text += "\n" + m_stackTrace;
 			m_stringBuilder.AppendLine("[Warning] " + text);
 			Console.ResetColor();
 		}
