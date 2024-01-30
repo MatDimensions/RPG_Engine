@@ -6,8 +6,6 @@
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<RootNamespace>Engine</RootNamespace>
-		<GenerateDocumentationFile>False</GenerateDocumentationFile>
-		<DocumentationFile>C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\doc\Engine\EngineAPI.XML</DocumentationFile>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

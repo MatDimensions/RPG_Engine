@@ -1,6 +1,6 @@
 ﻿namespace Engine
 {
-	public class AnimatedEnityDebugConfig : EntityConfig
+	public class AnimatedDebugEnityConfig : EntityConfig
 	{
 		public TransformComponentConfig TransformConfig = new();
 		public RendererComponentConfig RendererConfig = new();
