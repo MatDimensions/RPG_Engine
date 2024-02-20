@@ -1,15 +1,17 @@
 ﻿namespace Engine
 {
-	public class AnimationComponentConfig : ComponentConfig<AnimationComponent>
+	public class MultiAnimationComponentConfig : ComponentConfig<MultiAnimationComponent>
 	{
 		public int SpritesNumber;
-		public float AnimationTime;
-		public float AnimationCurrentTime;
+		public Dictionary<string, int> Animations;
+		public int[] AnimationsSpritesNumbers;
+		public float[] AnimationsTime;
+		public int[] AnimationsStartIndex;
 		public string[] SpritesNames;
 
-		public AnimationComponentConfig() { }
+		public MultiAnimationComponentConfig() { }
 
-		public AnimationComponentConfig(string definitionDirectory, string definitionFile, bool isEngineAnim)
+		public MultiAnimationComponentConfig(string definitionDirectory, string definitionFile, bool isEngineAnim)
 		{
 			m_definitionDirectory = definitionDirectory;
 			m_definitionFile = definitionFile;
@@ -32,12 +34,12 @@
 			Init();
 		}
 
-		public override void InitComponent(ref AnimationComponent component)
+		public override void InitComponent(ref MultiAnimationComponent component)
 		{
-			component.SpritesNumber = SpritesNumber;
-			component.AnimationTime = AnimationTime;
-			component.AnimationCurrentTime = AnimationCurrentTime;
-			component.AnimationStartIndex = 0;
+			component.Animations = Animations;
+			component.AnimationsSpritesNumbers = AnimationsSpritesNumbers;
+			component.AnimationsTime = AnimationsTime;
+			component.AnimationsStartIndex = AnimationsStartIndex;
 			component.SpritesNames = SpritesNames;
 		}
 
@@ -50,18 +52,30 @@
 		{
 			using (StreamReader sr = new StreamReader(EngineConfig.DataDirectory + definitionDirectory + definitionFile))
 			{
-				string firstLine = sr.ReadLine();
-				string[] splitLine = firstLine.Split(' ');
-				if (!splitLine[0].Contains("ANIM"))
+				string line = sr.ReadLine();
+				string[] splitLine = line.Split(' ');
+				if (!splitLine[0].Contains("MULTI_ANIM"))
 				{
 					Debug.LogError("Can't read definition file of anim : " + definitionDirectory + definitionFile);
 					return;
 				}
-
-				SpritesNumber = int.Parse(splitLine[1]);
-				AnimationTime = float.Parse(splitLine[2]);
-				AnimationCurrentTime = 0f;
+				int animationsNumber = int.Parse(splitLine[1]);
+				SpritesNumber = int.Parse(splitLine[2]);
+				Animations = new Dictionary<string, int>();
+				AnimationsSpritesNumbers = new int[animationsNumber];
+				AnimationsTime = new float[animationsNumber];
+				AnimationsStartIndex = new int[animationsNumber];
 				SpritesNames = new string[SpritesNumber];
+
+				for (int i = 0; i < animationsNumber; ++i)
+				{
+					line = sr.ReadLine();
+					splitLine = line.Split(' ');
+					Animations.Add(splitLine[0], i);
+					AnimationsTime[i] = float.Parse(splitLine[1]);
+					AnimationsStartIndex[i] = int.Parse(splitLine[2]);
+					AnimationsSpritesNumbers[i] = int.Parse(splitLine[3]);
+				}
 				for (int i = 0; i < SpritesNumber; ++i)
 				{
 					SpritesNames[i] = isEngineAnim ? "../" : "";

@@ -1,4 +1,4 @@
-﻿using Engine;
+using Engine;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using SFML.System;
@@ -21,9 +21,11 @@ namespace Global
 			systems.Inject();
 			systems.Init();
 
-			AnimatedDebugEnityConfig animEntityConfig = new AnimatedDebugEnityConfig();
+			AnimatedEnityDebugConfig animEntityConfig = new AnimatedEnityDebugConfig();
+			float animationTimer = 0f;
 
-			animEntityConfig.CreateEntity(world);
+			ref MultiAnimationComponent multiAnimComp = ref world.GetPool<MultiAnimationComponent>().Get(animEntityConfig.CreateEntity(world));
+			multiAnimComp.CurrentAnimation = "Idle";
 
 			DebugEntityConfig entityconfig = new DebugEntityConfig();
 			/*entityconfig.RendererConfig.Sprite = SpriteUtility.GetSprite(EngineConfig.DebugSprite);
@@ -56,6 +58,17 @@ namespace Global
 					Debug.Log("fps : " + frameCount);
 					frameCount = 0;
 					timer = 0f;
+				}
+
+				animationTimer += EngineData.DeltaTime;
+				if (animationTimer >= 7f && multiAnimComp.CurrentAnimation == "Idle")
+				{
+					multiAnimComp.CurrentAnimation = "Fade";
+				}
+				if (animationTimer > 15f)
+				{
+					multiAnimComp.CurrentAnimation = "Idle";
+					animationTimer = 0f;
 				}
 
 				systems.Run();
