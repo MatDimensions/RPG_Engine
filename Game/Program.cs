@@ -2,7 +2,6 @@
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using SFML.System;
-using SFML.Window;
 
 namespace Global
 {
@@ -22,11 +21,11 @@ namespace Global
 			systems.Inject();
 			systems.Init();
 
-			AnimatedEnityDebugConfig animEntityConfig = new AnimatedEnityDebugConfig();
+			AnimatedDebugEnityConfig animEntityConfig = new AnimatedDebugEnityConfig();
 
 			animEntityConfig.CreateEntity(world);
 
-			EntityDebugConfig entityconfig = new EntityDebugConfig();
+			DebugEntityConfig entityconfig = new DebugEntityConfig();
 			/*entityconfig.RendererConfig.Sprite = SpriteUtility.GetSprite(EngineConfig.DebugSprite);
 			entityconfig.RendererConfig.Shader = ShaderUtility.GetShader(EngineConfig.DebugShader);
 			entityconfig.RendererConfig.BlendMode = SFML.Graphics.BlendMode.Alpha;
@@ -57,39 +56,6 @@ namespace Global
 					Debug.Log("fps : " + frameCount);
 					frameCount = 0;
 					timer = 0f;
-				}
-
-				EngineData.Window.DispatchEvents();
-
-				if (Mouse.IsButtonPressed(Mouse.Button.Left))
-				{
-					int entity = entityconfig.CreateEntity(world);
-					ref TransformComponent transformComp = ref world.GetPool<TransformComponent>().Get(entity);
-					transformComp.Position = Camera.ScreenToWorld(Mouse.GetPosition(EngineData.Window));
-					transformComp.Rotation = (rand.NextSingle() - 0.5f) * 2 * 180f;
-					transformComp.Scale = rand.NextSingle() + 0.5f;
-				}
-
-				if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
-				{
-					RendererSystem.CloseWindow(EngineData.Window, null);
-				}
-
-				if (Keyboard.IsKeyPressed(Keyboard.Key.Z))
-				{
-					Camera.SetPosition(Camera.GetPosition() + new Vector2f(0, 1f));
-				}
-				else if (Keyboard.IsKeyPressed(Keyboard.Key.S))
-				{
-					Camera.SetPosition(Camera.GetPosition() + new Vector2f(0, -1f));
-				}
-				if (Keyboard.IsKeyPressed(Keyboard.Key.Q))
-				{
-					Camera.SetPosition(Camera.GetPosition() + new Vector2f(-1f, 0f));
-				}
-				else if (Keyboard.IsKeyPressed(Keyboard.Key.D))
-				{
-					Camera.SetPosition(Camera.GetPosition() + new Vector2f(1f, 0f));
 				}
 
 				systems.Run();

@@ -10,10 +10,10 @@
         "dependencies": {
           "EngineAPI": "1.0.0",
           "EngineBase": "1.0.0",
+          "EngineRenderer": "1.0.0",
           "Leopotam.ECS": "1.0.0",
           "Microsoft.DotNet.ILCompiler": "8.0.1",
           "Microsoft.NET.ILLink.Tasks": "8.0.1",
-          "Renderer": "1.0.0",
           "SFML.Graphics": "2.5.0"
         },
         "runtime": {
@@ -327,8 +327,8 @@
       "EngineAPI/1.0.0": {
         "dependencies": {
           "EngineBase": "1.0.0",
-          "Leopotam.ECS": "1.0.0",
-          "Renderer": "1.0.0"
+          "EngineRenderer": "1.0.0",
+          "Leopotam.ECS": "1.0.0"
         },
         "runtime": {
           "EngineAPI.dll": {}
@@ -345,12 +345,7 @@
           "EngineBase.dll": {}
         }
       },
-      "Leopotam.ECS/1.0.0": {
-        "runtime": {
-          "Leopotam.ECS.dll": {}
-        }
-      },
-      "Renderer/1.0.0": {
+      "EngineRenderer/1.0.0": {
         "dependencies": {
           "EngineBase": "1.0.0",
           "Leopotam.ECS": "1.0.0",
@@ -359,7 +354,12 @@
           "SFML.Window": "2.5.0"
         },
         "runtime": {
-          "Renderer.dll": {}
+          "EngineRenderer.dll": {}
+        }
+      },
+      "Leopotam.ECS/1.0.0": {
+        "runtime": {
+          "Leopotam.ECS.dll": {}
         }
       },
       "SFML.Graphics/2.5.0": {
@@ -435,12 +435,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Leopotam.ECS/1.0.0": {
+    "EngineRenderer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Renderer/1.0.0": {
+    "Leopotam.ECS/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
