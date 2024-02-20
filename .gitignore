@@ -36,3 +36,5 @@ src/SFML.System/obj/
 src/SFML.Window/bin/
 
 src/SFML.Window/obj/
+
+src/Engine/EngineMath/obj/
