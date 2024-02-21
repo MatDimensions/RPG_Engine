@@ -1,6 +1,6 @@
 ﻿namespace Engine
 {
-	public struct MultiAnimationComponent
+	public struct MultiTimedAnimationComponent
 	{
 		public string CurrentAnimation
 		{
@@ -14,8 +14,8 @@
 		public bool HaveAnimationChanged { get => m_haveAnimationChanged; internal set => m_haveAnimationChanged = value; }
 
 		public Dictionary<string, int> Animations;
+		public float[] SpritesTime;
 		public int[] AnimationsSpritesNumbers;
-		public float[] AnimationsTime;
 		public int[] AnimationsStartIndex;
 		public string[] SpritesNames;
 

@@ -24,7 +24,7 @@ namespace Global
 			AnimatedDebugEnityConfig animEntityConfig = new AnimatedDebugEnityConfig();
 			float animationTimer = 0f;
 
-			ref MultiAnimationComponent multiAnimComp = ref world.GetPool<MultiAnimationComponent>().Get(animEntityConfig.CreateEntity(world));
+			ref MultiTimedAnimationComponent multiAnimComp = ref world.GetPool<MultiTimedAnimationComponent>().Get(animEntityConfig.CreateEntity(world));
 			multiAnimComp.CurrentAnimation = "Idle";
 
 			DebugEntityConfig entityconfig = new DebugEntityConfig();
@@ -39,14 +39,14 @@ namespace Global
 			entityconfig.RendererConfig.Shader = ShaderUtility.GetShader(ShaderUtility.SHADER_NULL_NAME);
 			entityconfig.RendererConfig.IsTerrain = true;
 
-			for (int i = 0; i < 2000; i++)
+			/*for (int i = 0; i < 2000; i++)
 			{
 				int entity = entityconfig.CreateEntity(world);
 				ref TransformComponent transformComp = ref world.GetPool<TransformComponent>().Get(entity);
 				transformComp.Position = new SFML.System.Vector2f(rand.NextSingle() * 800f, rand.NextSingle() * 600f);
 				transformComp.Rotation = (rand.NextSingle() - 0.5f) * 2 * 180f;
 				transformComp.Scale = rand.NextSingle() + 1.1f;
-			}
+			//}*/
 
 			while (EngineData.Window.IsOpen)
 			{

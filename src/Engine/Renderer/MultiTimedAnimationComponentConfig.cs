@@ -1,16 +1,17 @@
 ﻿namespace Engine
 {
-	public class TimedAnimationComponentConfig : ComponentConfig<TimedAnimationComponent>
+	public class MultiTimedAnimationComponentConfig : ComponentConfig<MultiTimedAnimationComponent>
 	{
 		public int SpritesNumber;
-		public float AnimationCurrentTime;
-		public int CurrentSprite;
+		public Dictionary<string, int> Animations;
 		public float[] SpritesTime;
+		public int[] AnimationsSpritesNumbers;
+		public int[] AnimationsStartIndex;
 		public string[] SpritesNames;
 
-		public TimedAnimationComponentConfig() { }
+		public MultiTimedAnimationComponentConfig() { }
 
-		public TimedAnimationComponentConfig(string definitionDirectory, string definitionFile, bool isEngineAnim)
+		public MultiTimedAnimationComponentConfig(string definitionDirectory, string definitionFile, bool isEngineAnim)
 		{
 			m_definitionDirectory = definitionDirectory;
 			m_definitionFile = definitionFile;
@@ -33,14 +34,12 @@
 			Init();
 		}
 
-		public override void InitComponent(ref TimedAnimationComponent component)
+		public override void InitComponent(ref MultiTimedAnimationComponent component)
 		{
-			component.SpritesNumber = SpritesNumber;
-			component.AnimationCurrentTime = AnimationCurrentTime;
-			component.CurrentSprite = CurrentSprite;
+			component.Animations = Animations;
 			component.SpritesTime = SpritesTime;
-			component.AnimationStartIndex = 0;
-			component.AnimationLastIndex = SpritesNumber - 1;
+			component.AnimationsSpritesNumbers = AnimationsSpritesNumbers;
+			component.AnimationsStartIndex = AnimationsStartIndex;
 			component.SpritesNames = SpritesNames;
 		}
 
@@ -55,17 +54,27 @@
 			{
 				string line = sr.ReadLine();
 				string[] splitLine = line.Split(' ');
-				if (!splitLine[0].Contains("TIMED_ANIM"))
+				if (!splitLine[0].Contains("MULTI_TIMED_ANIM"))
 				{
-					Debug.LogError("Can't read definition file of timed anim : " + definitionDirectory + definitionFile);
+					Debug.LogError("Can't read definition file of anim : " + definitionDirectory + definitionFile);
 					return;
 				}
-
-				SpritesNumber = int.Parse(splitLine[1]);
-				AnimationCurrentTime = 0f;
-				CurrentSprite = 0;
-				SpritesTime = new float[SpritesNumber];
+				int animationsNumber = int.Parse(splitLine[1]);
+				SpritesNumber = int.Parse(splitLine[2]);
+				Animations = new Dictionary<string, int>();
+				AnimationsSpritesNumbers = new int[animationsNumber];
+				AnimationsStartIndex = new int[animationsNumber];
 				SpritesNames = new string[SpritesNumber];
+				SpritesTime = new float[SpritesNumber];
+
+				for (int i = 0; i < animationsNumber; ++i)
+				{
+					line = sr.ReadLine();
+					splitLine = line.Split(' ');
+					Animations.Add(splitLine[0], i);
+					AnimationsStartIndex[i] = int.Parse(splitLine[1]);
+					AnimationsSpritesNumbers[i] = int.Parse(splitLine[2]);
+				}
 				for (int i = 0; i < SpritesNumber; ++i)
 				{
 					line = sr.ReadLine();

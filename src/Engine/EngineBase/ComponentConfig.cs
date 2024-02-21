@@ -9,7 +9,7 @@ namespace Engine
 		public abstract void Deserialize(BinaryReader reader);
 	}
 
-	public class ComponentConfig<T> : ComponentConfigBase where T : struct
+	public abstract class ComponentConfig<T> : ComponentConfigBase where T : struct
 	{
 		public void AddComponent(EcsWorld world, int entity)
 		{
