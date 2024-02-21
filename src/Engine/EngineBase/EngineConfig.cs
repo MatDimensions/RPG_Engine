@@ -13,7 +13,7 @@ namespace Engine
 		public static string DebugSprite = "Textures/ignoble.png";
 		public static string DebugShader = "Shaders/truc.frag";
 		public static string DebugAnimDirectory = "Engine/Anims/DarkBlueSpirit/";
-		public static string DebugAnimDefinitionFile = "AnimDef.txt";
+		public static string DebugAnimDefinitionFile = "MultiAnimDef.txt";
 
 		public static Vector2u BaseWindowSize = new Vector2u(800, 600);
 	}

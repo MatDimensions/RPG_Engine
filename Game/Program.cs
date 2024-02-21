@@ -21,7 +21,7 @@ namespace Global
 			systems.Inject();
 			systems.Init();
 
-			AnimatedEnityDebugConfig animEntityConfig = new AnimatedEnityDebugConfig();
+			AnimatedDebugEnityConfig animEntityConfig = new AnimatedDebugEnityConfig();
 			float animationTimer = 0f;
 
 			ref MultiAnimationComponent multiAnimComp = ref world.GetPool<MultiAnimationComponent>().Get(animEntityConfig.CreateEntity(world));
@@ -36,6 +36,8 @@ namespace Global
 			entityconfig.SaveOnFile("../../truc.entityConfig");*/
 
 			entityconfig.LoadFromFile("../../truc.entityConfig");
+			entityconfig.RendererConfig.Shader = ShaderUtility.GetShader(ShaderUtility.SHADER_NULL_NAME);
+			entityconfig.RendererConfig.IsTerrain = true;
 
 			for (int i = 0; i < 2000; i++)
 			{

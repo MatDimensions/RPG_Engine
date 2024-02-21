@@ -1,4 +1,6 @@
-ANIMATION 17 5,1
+MULTI_ANIMATION 2 17
+Idle 5 0 1
+Fade 2,1 0 17
 1.png
 2.png
 3.png
