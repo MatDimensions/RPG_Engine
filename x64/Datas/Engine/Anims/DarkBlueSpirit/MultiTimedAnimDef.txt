@@ -1,4 +1,6 @@
-TIMED_ANIMATION 17
+MULTI_TIMED_ANIMATION 2 17
+Idle 0 1
+Fade 1 16
 1.png 2,1
 2.png 0,1
 3.png 0,1
@@ -15,4 +17,4 @@ TIMED_ANIMATION 17
 14.png 0,1
 15.png 0,1
 16.png 0,1
-17.png 2,1
+17.png 0,1
