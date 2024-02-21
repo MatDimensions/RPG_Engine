@@ -48,8 +48,6 @@ namespace Global
 				transformComp.Scale = rand.NextSingle() + 1.1f;
 			}
 
-			clock.Restart();
-
 			while (EngineData.Window.IsOpen)
 			{
 				EngineData.DeltaTime = clock.Restart().AsSeconds();
