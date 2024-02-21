@@ -141,10 +141,10 @@ namespace Engine
 			ref TransformComponent previousRenderer,
 			ref TransformComponent nextRenderer)
 		{
-			if (previousRenderer.Position.Y > renderer.Position.Y
+			if (previousRenderer.Position.Y < renderer.Position.Y
 				|| previousRenderer.Position.X > renderer.Position.X)
 				return -1;
-			else if (nextRenderer.Position.Y < renderer.Position.Y
+			else if (nextRenderer.Position.Y > renderer.Position.Y
 				|| nextRenderer.Position.X < renderer.Position.X)
 				return 1;
 			else
@@ -156,11 +156,11 @@ namespace Engine
 			ref TransformComponent previousRenderer,
 			ref TransformComponent nextRenderer)
 		{
-			if (previousRenderer.Position.Y > renderer.Position.Y)
+			if (previousRenderer.Position.Y < renderer.Position.Y)
 			{
 				return -1;
 			}
-			else if (nextRenderer.Position.Y < renderer.Position.Y)
+			else if (nextRenderer.Position.Y > renderer.Position.Y)
 			{
 				return 1;
 			}
@@ -188,7 +188,7 @@ namespace Engine
 					else
 						return 1;
 				}
-				else if (rendererToInsert.Position.Y < previousRenderer.Position.Y)
+				else if (rendererToInsert.Position.Y > previousRenderer.Position.Y)
 					return 1;
 				else
 					return 0;
@@ -198,7 +198,7 @@ namespace Engine
 			//at place 0
 			if (previousRenderer.Position.Y == rendererToInsert.Position.Y
 				&& previousRenderer.Position.X <= rendererToInsert.Position.X
-				|| previousRenderer.Position.Y > rendererToInsert.Position.Y)
+				|| previousRenderer.Position.Y < rendererToInsert.Position.Y)
 			{
 				return 0;
 			}
@@ -206,7 +206,7 @@ namespace Engine
 			//at last place
 			if (nextRenderer.Position.Y == rendererToInsert.Position.Y
 				&& nextRenderer.Position.X >= rendererToInsert.Position.X
-				|| nextRenderer.Position.Y < rendererToInsert.Position.Y)
+				|| nextRenderer.Position.Y > rendererToInsert.Position.Y)
 			{
 				return list.Count;
 			}
@@ -237,12 +237,13 @@ namespace Engine
 				lastLastInsertionPlace = lastInsertionPlace;
 				lastInsertionPlace = insertionPlace;
 				insertionPlace = (minPlace + maxPlace) / 2;
+				insertionPlace = insertionPlace == 0 ? 1 : insertionPlace;
 
 				if (lastLastInsertionPlace == insertionPlace)
 					return insertionPlace;
 			}
 
-			throw new Exception("No place for terrain Renderer found");
+			throw new Exception("No place for renderer found");
 		}
 
 		private void AddTerrainRenderer(int entity, ref TransformComponent renderer)
