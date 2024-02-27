@@ -64,6 +64,37 @@ namespace Engine
 
 		public void Run(IEcsSystems systems)
 		{
+#if DEBUG
+			if (EngineConfig.DisplayOnlyCollisions)
+			{
+				EngineData.Window.Clear();
+
+				Sprite sprite = null;
+				sprite = SpriteUtility.GetSprite(EngineConfig.CircularCollisionSprite);
+
+				m_renderStates.Shader = ShaderUtility.GetShader(EngineConfig.CollisionShader);
+				m_renderStates.BlendMode = BlendMode.Alpha;
+
+				foreach (int entity in m_circleCollisionFilter.Value)
+				{
+					ref CircularCollisionComponent collisionComp = ref m_circleCollisionPool.Value.Get(entity);
+					ref TransformComponent transform = ref m_transformPool.Value.Get(entity);
+
+					sprite.Position = Camera.WorldToScreen((transform.Position + collisionComp.CenterOffset) * m_invertVector);
+					m_scaleVector.X = transform.Scale * collisionComp.Radius / 175;
+					m_scaleVector.Y = transform.Scale * collisionComp.Radius / 175;
+					sprite.Scale = m_scaleVector;
+
+					EngineData.Window.Draw(sprite, m_renderStates);
+				}
+
+				EngineData.Window.Draw(sprite, m_renderStates);
+
+				EngineData.Window.Display();
+				return;
+			}
+#endif
+
 			foreach (int entity in m_rendererFilter.Value)
 			{
 				ref RendererComponent rendererComp = ref m_rendererPool.Value.Get(entity);
@@ -106,6 +137,32 @@ namespace Engine
 			{
 				DisplayRenderer(ref m_rendererPool.Value.Get(entity), ref m_transformPool.Value.Get(entity), EngineData.Window);
 			}
+
+#if DEBUG
+			if (EngineConfig.DisplayCollisionsOnTopOfSprites)
+			{
+				Sprite sprite = null;
+				sprite = SpriteUtility.GetSprite(EngineConfig.CircularCollisionSprite);
+
+				m_renderStates.Shader = ShaderUtility.GetShader(EngineConfig.CollisionShader);
+				m_renderStates.BlendMode = BlendMode.Alpha;
+
+				foreach (int entity in m_circleCollisionFilter.Value)
+				{
+					ref CircularCollisionComponent collisionComp = ref m_circleCollisionPool.Value.Get(entity);
+					ref TransformComponent transform = ref m_transformPool.Value.Get(entity);
+
+					sprite.Position = Camera.WorldToScreen((transform.Position + collisionComp.CenterOffset) * m_invertVector);
+					m_scaleVector.X = transform.Scale * collisionComp.Radius / 175;
+					m_scaleVector.Y = transform.Scale * collisionComp.Radius / 175;
+					sprite.Scale = m_scaleVector;
+
+					EngineData.Window.Draw(sprite, m_renderStates);
+				}
+
+				EngineData.Window.Draw(sprite, m_renderStates);
+			}
+#endif
 
 			EngineData.Window.Display();
 
@@ -339,6 +396,13 @@ namespace Engine
 		#endregion
 
 		#region Fields
+		#region DisplayCollisions
+#if DEBUG
+		private EcsFilterInject<Inc<TransformComponent, CircularCollisionComponent>> m_circleCollisionFilter;
+		private EcsPoolInject<CircularCollisionComponent> m_circleCollisionPool;
+#endif
+		#endregion
+
 		private EcsWorldInject m_world;
 
 		private EcsFilterInject<Inc<TransformComponent, RendererComponent>> m_rendererFilter;

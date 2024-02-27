@@ -345,9 +345,19 @@
           "EngineBase.dll": {}
         }
       },
+      "EnginePhysic/1.0.0": {
+        "dependencies": {
+          "EngineBase": "1.0.0",
+          "Leopotam.ECS": "1.0.0"
+        },
+        "runtime": {
+          "EnginePhysic.dll": {}
+        }
+      },
       "EngineRenderer/1.0.0": {
         "dependencies": {
           "EngineBase": "1.0.0",
+          "EnginePhysic": "1.0.0",
           "Leopotam.ECS": "1.0.0",
           "SFML.Graphics": "2.5.0",
           "SFML.System": "2.5.0",
@@ -431,6 +441,11 @@
       "sha512": ""
     },
     "EngineBase/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EnginePhysic/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
