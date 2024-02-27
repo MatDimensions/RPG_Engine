@@ -8,12 +8,14 @@ namespace Engine
 		public static void Init()
 		{
 			m_sprites = new Dictionary<string, Sprite>();
-			LoadDebugSprite(EngineConfig.DebugSprite);
+			LoadEngineSprite(EngineConfig.DebugSprite);
+			LoadEngineSprite(EngineConfig.CircularCollisionSprite);
 		}
 
 		public static void Destroy()
 		{
 			UnloadSprite(EngineConfig.DebugSprite);
+			UnloadSprite(EngineConfig.CircularCollisionSprite);
 		}
 
 		public static bool IsSpriteLoad(string textureName)
@@ -25,18 +27,22 @@ namespace Engine
 		/// Load sprite corresponding at the texture name
 		/// /!\ cause allocation
 		/// </summary>
-		/// <param name="textureName"></param>
-		public static void LoadSprite(string textureName)
+		/// <param name="textureName">name of the sprite file</param>
+		/// <param name="isCentered"></param>
+		/// <returns>the sprite created</returns>
+		public static Sprite LoadSprite(string textureName, bool isCentered = true)
 		{
 			if (m_sprites.ContainsKey(textureName))
 			{
 				Debug.LogError(LOAD_ERROR + textureName);
-				return;
+				return null;
 			}
 			Texture text = new Texture(TEXTURES_DIRECTORY + textureName);
 			Sprite sprite = new Sprite(text);
-			sprite.Origin = (Vector2f)sprite.Texture.Size / 2f;
+			if (isCentered)
+				sprite.Origin = (Vector2f)sprite.Texture.Size / 2f;
 			m_sprites.Add(textureName, sprite);
+			return sprite;
 		}
 
 		/// <summary>
@@ -78,7 +84,7 @@ namespace Engine
 			return m_sprites[textureName];
 		}
 
-		private static void LoadDebugSprite(string textureName)
+		private static void LoadEngineSprite(string textureName)
 		{
 			if (m_sprites.ContainsKey(textureName))
 			{

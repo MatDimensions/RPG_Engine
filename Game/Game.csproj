@@ -8,6 +8,7 @@
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<BaseOutputPath>..\x64</BaseOutputPath>
 		<PublishAot>True</PublishAot>
+		<RootNamespace>Game</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>

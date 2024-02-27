@@ -42,3 +42,8 @@ src/Leopotam.ECS/bin/
 src/SFML.System/bin/
 
 src/Engine/EngineMath/obj/
+src/Engine/EnginePhysic/obj/
+
+src/Engine/EngineMath/bin/
+
+src/Engine/EnginePhysic/bin/

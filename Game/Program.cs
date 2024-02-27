@@ -1,4 +1,5 @@
 using Engine;
+using Engine.Colliders;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using SFML.System;
@@ -21,13 +22,14 @@ namespace Global
 			systems.Inject();
 			systems.Init();
 
-			AnimatedDebugEnityConfig animEntityConfig = new AnimatedDebugEnityConfig();
+			#region Test
+			/*AnimatedDebugEnityConfig animEntityConfig = new AnimatedDebugEnityConfig();
 			float animationTimer = 0f;
 
 			ref MultiTimedAnimationComponent multiAnimComp = ref world.GetPool<MultiTimedAnimationComponent>().Get(animEntityConfig.CreateEntity(world));
-			multiAnimComp.CurrentAnimation = "Idle";
+			multiAnimComp.CurrentAnimation = "Idle";*/
 
-			DebugEntityConfig entityconfig = new DebugEntityConfig();
+			//DebugEntityConfig entityconfig = new DebugEntityConfig();
 			/*entityconfig.RendererConfig.Sprite = SpriteUtility.GetSprite(EngineConfig.DebugSprite);
 			entityconfig.RendererConfig.Shader = ShaderUtility.GetShader(EngineConfig.DebugShader);
 			entityconfig.RendererConfig.BlendMode = SFML.Graphics.BlendMode.Alpha;
@@ -35,7 +37,7 @@ namespace Global
 			entityconfig.RendererConfig.IsTerrain = false;
 			entityconfig.SaveOnFile("../../truc.entityConfig");*/
 
-			entityconfig.LoadFromFile("../../truc.entityConfig");
+			/*entityconfig.LoadFromFile("../../truc.entityConfig");
 			entityconfig.RendererConfig.Shader = ShaderUtility.GetShader(ShaderUtility.SHADER_NULL_NAME);
 			entityconfig.RendererConfig.IsTerrain = true;
 
@@ -46,7 +48,27 @@ namespace Global
 				transformComp.Position = new SFML.System.Vector2f(rand.NextSingle() * 800f, rand.NextSingle() * 600f);
 				transformComp.Rotation = (rand.NextSingle() - 0.5f) * 2 * 180f;
 				transformComp.Scale = rand.NextSingle() + 1.1f;
-			}
+			}*/
+			#endregion
+
+			#region CollisionTest
+			CollisionDebugEntityConfig collisionDebugEntity = new CollisionDebugEntityConfig();
+			/*collisionDebugEntity.transformComponentConfig.Position = Vector2f.Zero;
+			collisionDebugEntity.transformComponentConfig.Rotation = 0f;
+			collisionDebugEntity.transformComponentConfig.Scale = 1f;
+			collisionDebugEntity.rendererComponentConfig.Sprite = SpriteUtility.GetSprite(EngineConfig.DebugSprite);
+			collisionDebugEntity.rendererComponentConfig.BlendMode = SFML.Graphics.BlendMode.Alpha;
+			collisionDebugEntity.rendererComponentConfig.IsStatic = false;
+			collisionDebugEntity.rendererComponentConfig.IsTerrain = false;
+			collisionDebugEntity.circularCollisionComponentConfig.CenterOffset = new Vector2f(-1f, 0f);
+			collisionDebugEntity.circularCollisionComponentConfig.Radius = 12;
+			collisionDebugEntity.circularCollisionComponentConfig.Collider = new DebugCollider();
+			collisionDebugEntity.SaveOnFile(EngineConfig.DataDirectory + "CollideEntity.config");*/
+			collisionDebugEntity.LoadFromFile(EngineConfig.DataDirectory + "CollideEntity.config");
+			collisionDebugEntity.CreateEntity(world);
+
+			world.GetPool<FollowCursorComponent>().Add(collisionDebugEntity.CreateEntity(world));
+			#endregion
 
 			while (EngineData.Window.IsOpen)
 			{
@@ -60,7 +82,7 @@ namespace Global
 					timer = 0f;
 				}
 
-				animationTimer += EngineData.DeltaTime;
+				/*animationTimer += EngineData.DeltaTime;
 				if (animationTimer >= 7f && multiAnimComp.CurrentAnimation == "Idle")
 				{
 					multiAnimComp.CurrentAnimation = "Fade";
@@ -69,7 +91,7 @@ namespace Global
 				{
 					multiAnimComp.CurrentAnimation = "Idle";
 					animationTimer = 0f;
-				}
+				}*/
 
 				systems.Run();
 			}
@@ -84,11 +106,15 @@ namespace Global
 			systems.Add(new EnginePreRunSystem());
 
 			//systems.Add(new TransformSystem());
+			systems.Add(new MoveToCursorSystem());
 
+			systems.Add(new CollisionSystem());
 			systems.Add(new AnimationSystem());
 			systems.Add(new RendererSystem());
+			#region PostRunSystems
 			systems.Add(new TimerSystem());
 			systems.Add(new ResetTransformSystem());
+			#endregion
 			systems.Add(new EngineDestroySystem());
 		}
 	}

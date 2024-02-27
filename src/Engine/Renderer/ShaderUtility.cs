@@ -12,13 +12,15 @@ namespace Engine
 		public static void Init()
 		{
 			m_shaders = new Dictionary<string, Shader>();
-			LoadDebugShader(EngineConfig.DebugShader);
+			LoadEngineShader(EngineConfig.DebugShader);
+			LoadEngineShader(EngineConfig.CollisionShader);
 			m_shaders.Add(SHADER_NULL_NAME, null);
 		}
 
 		public static void Destroy()
 		{
 			UnloadShader(EngineConfig.DebugShader);
+			UnloadShader(EngineConfig.CollisionShader);
 		}
 
 		public static bool IsShaderLoad(string shaderName)
@@ -87,14 +89,14 @@ namespace Engine
 			return m_shaders[shaderName];
 		}
 
-		private static void LoadDebugShader(string shaderName)
+		private static void LoadEngineShader(string shaderName)
 		{
 			if (m_shaders.ContainsKey(shaderName))
 			{
 				Debug.LogError(LOAD_ERROR + shaderName);
 				return;
 			}
-			Shader shader = new Shader(null, null, EngineConfig.EngineDataDirectory + EngineConfig.DebugShader);
+			Shader shader = new Shader(null, null, EngineConfig.EngineDataDirectory + shaderName);
 			m_shaders.Add(shaderName, shader);
 		}
 
