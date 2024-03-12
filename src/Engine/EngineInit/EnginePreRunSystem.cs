@@ -12,7 +12,7 @@ namespace Engine
 		public void Init(IEcsSystems systems)
 		{
 			entityconfig = new DebugEntityConfig();
-			entityconfig.LoadFromFile("../../truc.entityConfig");
+			entityconfig.LoadFromFile(EngineConfig.DataDirectory + "truc.entityConfig");
 		}
 
 		public void Run(IEcsSystems systems)

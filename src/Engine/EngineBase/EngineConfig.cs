@@ -15,7 +15,7 @@ namespace Engine
 		public static readonly string DebugShader = "Shaders/truc.frag";
 		public static readonly string CollisionShader = "Shaders/Collision.frag";
 		public static readonly string DebugAnimDirectory = "Engine/Anims/DarkBlueSpirit/";
-		public static readonly string DebugAnimDefinitionFile = "MultiTimedAnimDef.txt";
+		public static readonly string DebugAnimDefinitionFile = "AnimDef.txt";
 
 		public static readonly Vector2u BaseWindowSize = new Vector2u(800, 600);
 

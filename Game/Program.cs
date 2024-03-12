@@ -23,8 +23,10 @@ namespace Global
 			systems.Init();
 
 			#region Test
-			/*AnimatedDebugEnityConfig animEntityConfig = new AnimatedDebugEnityConfig();
-			float animationTimer = 0f;
+			AnimatedDebugEnityConfig animEntityConfig = new AnimatedDebugEnityConfig();
+			animEntityConfig.LoadFromFile(EngineConfig.DataDirectory + "AnimEntity.entityConfig");
+			animEntityConfig.CreateEntity(world);
+			/*float animationTimer = 0f;
 
 			ref MultiTimedAnimationComponent multiAnimComp = ref world.GetPool<MultiTimedAnimationComponent>().Get(animEntityConfig.CreateEntity(world));
 			multiAnimComp.CurrentAnimation = "Idle";*/
@@ -35,9 +37,9 @@ namespace Global
 			entityconfig.RendererConfig.BlendMode = SFML.Graphics.BlendMode.Alpha;
 			entityconfig.RendererConfig.IsStatic = false;
 			entityconfig.RendererConfig.IsTerrain = false;
-			entityconfig.SaveOnFile("../../truc.entityConfig");*/
+			entityconfig.SaveOnFile(EngineConfig.DataDirectory + "truc.entityConfig");*/
 
-			/*entityconfig.LoadFromFile("../../truc.entityConfig");
+			/*entityconfig.LoadFromFile(EngineConfig.DataDirectory + "truc.entityConfig");
 			entityconfig.RendererConfig.Shader = ShaderUtility.GetShader(ShaderUtility.SHADER_NULL_NAME);
 			entityconfig.RendererConfig.IsTerrain = true;
 
@@ -63,8 +65,8 @@ namespace Global
 			collisionDebugEntity.circularCollisionComponentConfig.CenterOffset = new Vector2f(-1f, 0f);
 			collisionDebugEntity.circularCollisionComponentConfig.Radius = 12;
 			collisionDebugEntity.circularCollisionComponentConfig.Collider = new DebugCollider();
-			collisionDebugEntity.SaveOnFile(EngineConfig.DataDirectory + "CollideEntity.config");*/
-			collisionDebugEntity.LoadFromFile(EngineConfig.DataDirectory + "CollideEntity.config");
+			collisionDebugEntity.SaveOnFile(EngineConfig.DataDirectory + "CollideEntity.entityConfig");*/
+			collisionDebugEntity.LoadFromFile(EngineConfig.DataDirectory + "CollideEntity.entityConfig");
 			collisionDebugEntity.CreateEntity(world);
 
 			world.GetPool<FollowCursorComponent>().Add(collisionDebugEntity.CreateEntity(world));
@@ -108,12 +110,14 @@ namespace Global
 			//systems.Add(new TransformSystem());
 			systems.Add(new MoveToCursorSystem());
 
-			systems.Add(new CollisionSystem());
+			systems.Add(new CheckCollisionSystem());
+
 			systems.Add(new AnimationSystem());
 			systems.Add(new RendererSystem());
 			#region PostRunSystems
 			systems.Add(new TimerSystem());
 			systems.Add(new ResetTransformSystem());
+			systems.Add(new ResetCollisionSystem());
 			#endregion
 			systems.Add(new EngineDestroySystem());
 		}

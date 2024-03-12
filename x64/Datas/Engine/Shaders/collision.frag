@@ -7,6 +7,5 @@ void main()
 	vec2 texCoord = gl_TexCoord[0].xy;
 	vec4 pixel = texture2D(texture, texCoord);
 
-	//gl_FragColor = vec4(1, 1, 1, 1);
-	gl_FragColor = pixel.w > 0 ? vec4(1, 1, 1, 1) : pixel;
+	gl_FragColor = pixel.w * vec4(1, 1, 1, 1);
 }

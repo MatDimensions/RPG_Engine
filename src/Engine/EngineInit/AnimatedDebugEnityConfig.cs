@@ -4,6 +4,6 @@
 	{
 		public TransformComponentConfig TransformConfig = new();
 		public RendererComponentConfig RendererConfig = new();
-		public MultiTimedAnimationComponentConfig AnimationConfig = new MultiTimedAnimationComponentConfig(EngineConfig.DebugAnimDirectory, EngineConfig.DebugAnimDefinitionFile, true);
+		public AnimationComponentConfig AnimationConfig = new();//new AnimationComponentConfig(EngineConfig.DebugAnimDirectory, EngineConfig.DebugAnimDefinitionFile, true);
 	}
 }

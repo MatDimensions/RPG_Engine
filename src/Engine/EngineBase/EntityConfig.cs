@@ -1,4 +1,5 @@
 ﻿using Leopotam.EcsLite;
+using System.IO;
 using System.Reflection;
 
 namespace Engine
@@ -32,6 +33,17 @@ namespace Engine
 			}
 #endif
 			using FileStream fileStream = File.OpenRead(file);
+			LoadFromFile(fileStream);
+		}
+
+		public void SaveOnFile(string file)
+		{
+			using FileStream fileStream = File.OpenWrite(file);
+			SaveOnFile(fileStream);
+		}
+
+		private void LoadFromFile(FileStream fileStream)
+		{
 			using BinaryReader br = new BinaryReader(fileStream);
 
 			string fieldName = "";
@@ -45,18 +57,20 @@ namespace Engine
 			}
 		}
 
-		public void SaveOnFile(string file)
+		private void SaveOnFile(FileStream fileStream)
 		{
-			using FileStream fileStream = File.OpenWrite(file);
 			using BinaryWriter bw = new BinaryWriter(fileStream);
 
 			FieldInfo[] fieldInfos = this.GetType().UnderlyingSystemType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
 			bw.Write(fieldInfos.Length);
 			foreach (FieldInfo field in fieldInfos)
 			{
-				ComponentConfigBase configBase = (ComponentConfigBase)field.GetValue(this);
-				bw.Write(field.Name);
-				configBase.Serialize(bw);
+				if (field.FieldType.IsAssignableTo(typeof(ComponentConfigBase)))
+				{
+					ComponentConfigBase configBase = (ComponentConfigBase)field.GetValue(this);
+					bw.Write(field.Name);
+					configBase.Serialize(bw);
+				}
 			}
 		}
 
