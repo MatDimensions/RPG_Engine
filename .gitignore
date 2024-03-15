@@ -47,3 +47,9 @@ src/Engine/EnginePhysic/obj/
 src/Engine/EngineMath/bin/
 
 src/Engine/EnginePhysic/bin/
+
+src/Engine/Tools/EntityConfigEditor/obj/
+
+src/Engine/Tools/EntityConfigEditor/bin/Debug/
+
+src/Engine/Tools/EntityConfigEditor/bin/

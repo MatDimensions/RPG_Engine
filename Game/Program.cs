@@ -31,16 +31,7 @@ namespace Global
 			ref MultiTimedAnimationComponent multiAnimComp = ref world.GetPool<MultiTimedAnimationComponent>().Get(animEntityConfig.CreateEntity(world));
 			multiAnimComp.CurrentAnimation = "Idle";*/
 
-			//DebugEntityConfig entityconfig = new DebugEntityConfig();
-			/*entityconfig.RendererConfig.Sprite = SpriteUtility.GetSprite(EngineConfig.DebugSprite);
-			entityconfig.RendererConfig.Shader = ShaderUtility.GetShader(EngineConfig.DebugShader);
-			entityconfig.RendererConfig.BlendMode = SFML.Graphics.BlendMode.Alpha;
-			entityconfig.RendererConfig.IsStatic = false;
-			entityconfig.RendererConfig.IsTerrain = false;
-			entityconfig.SaveOnFile(EngineConfig.DataDirectory + "truc.entityConfig");*/
-
 			/*entityconfig.LoadFromFile(EngineConfig.DataDirectory + "truc.entityConfig");
-			entityconfig.RendererConfig.Shader = ShaderUtility.GetShader(ShaderUtility.SHADER_NULL_NAME);
 			entityconfig.RendererConfig.IsTerrain = true;
 
 			for (int i = 0; i < 2000; i++)
@@ -55,17 +46,6 @@ namespace Global
 
 			#region CollisionTest
 			CollisionDebugEntityConfig collisionDebugEntity = new CollisionDebugEntityConfig();
-			/*collisionDebugEntity.transformComponentConfig.Position = Vector2f.Zero;
-			collisionDebugEntity.transformComponentConfig.Rotation = 0f;
-			collisionDebugEntity.transformComponentConfig.Scale = 1f;
-			collisionDebugEntity.rendererComponentConfig.Sprite = SpriteUtility.GetSprite(EngineConfig.DebugSprite);
-			collisionDebugEntity.rendererComponentConfig.BlendMode = SFML.Graphics.BlendMode.Alpha;
-			collisionDebugEntity.rendererComponentConfig.IsStatic = false;
-			collisionDebugEntity.rendererComponentConfig.IsTerrain = false;
-			collisionDebugEntity.circularCollisionComponentConfig.CenterOffset = new Vector2f(-1f, 0f);
-			collisionDebugEntity.circularCollisionComponentConfig.Radius = 12;
-			collisionDebugEntity.circularCollisionComponentConfig.Collider = new DebugCollider();
-			collisionDebugEntity.SaveOnFile(EngineConfig.DataDirectory + "CollideEntity.entityConfig");*/
 			collisionDebugEntity.LoadFromFile(EngineConfig.DataDirectory + "CollideEntity.entityConfig");
 			collisionDebugEntity.CreateEntity(world);
 
