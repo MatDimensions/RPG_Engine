@@ -18,7 +18,7 @@ namespace Engine
 			ShaderUtility.Init();
 
 			entityconfig = new DebugEntityConfig();
-			entityconfig.LoadFromFile("../../truc.entityConfig");
+			entityconfig.LoadFromFile(EngineConfig.DataDirectory + "truc.entityConfig");
 			entityconfig.RendererConfig.Shader = ShaderUtility.GetShader(ShaderUtility.SHADER_NULL_NAME);
 
 			InputUtility.Init();

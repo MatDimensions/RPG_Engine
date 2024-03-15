@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EntityConfigEditor": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\guill\\bureau\\perso\\projets_perso\\SFML_NET\\Test\\Game\\x64\\Tools\\net8.0"
+    }
+  }
+}

@@ -4,12 +4,13 @@ using System.Runtime.CompilerServices;
 
 namespace Engine
 {
-	public class CollisionSystem : IEcsRunSystem
+	public class CheckCollisionSystem : IEcsRunSystem
 	{
 		public void Run(IEcsSystems systems)
 		{
 			int[] entities = m_circularFilter.Value.GetRawEntities();
 			int entityCount = m_circularFilter.Value.GetEntitiesCount();
+
 			for (int i = 0; i < entityCount; i++)
 			{
 				ref TransformComponent firstTransformComp = ref m_transformPool.Value.Get(entities[i]);
@@ -23,10 +24,16 @@ namespace Engine
 					{
 						firstCircularCollisionComp.IsColliding = true;
 						secondCircularCollisionComp.IsColliding = true;
+#if SAVE_ENTITY_COLLIDE_WITH
+						firstCircularCollisionComp.EntityCollideWith = m_world.Value.PackEntity(entities[j]);
+						secondCircularCollisionComp.EntityCollideWith = m_world.Value.PackEntity(entities[i]);
+#endif
+#if CALL_COLLIDER_WHEN_COLLIDE
 						EcsPackedEntityWithWorld firstEntityPacked = m_world.Value.PackEntityWithWorld(entities[i]);
 						EcsPackedEntityWithWorld secondEntityPacked = m_world.Value.PackEntityWithWorld(entities[j]);
-						firstCircularCollisionComp.Collider.Collide(ref firstEntityPacked, ref secondEntityPacked);
-						secondCircularCollisionComp.Collider.Collide(ref secondEntityPacked, ref firstEntityPacked);
+						firstCircularCollisionComp.Collider?.Collide(ref firstEntityPacked, ref secondEntityPacked);
+						secondCircularCollisionComp.Collider?.Collide(ref secondEntityPacked, ref firstEntityPacked);
+#endif
 					}
 				}
 			}
