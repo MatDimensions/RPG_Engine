@@ -12,7 +12,7 @@ namespace SFML.System
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Vector2f : IEquatable<Vector2f>
 	{
-		//PandaEngine start
+		//RedPandaEngine start
 		/// <summary>
 		/// Vector null
 		/// </summary>
@@ -21,7 +21,24 @@ namespace SFML.System
 		/// Vector unitary 
 		/// </summary>
 		public static readonly Vector2f One = new Vector2f(1f, 1f);
-		//PandaEngine end
+
+		/// <summary>
+		/// Up Vector
+		/// </summary>
+		public static readonly Vector2f Up = new Vector2f(0f, 1f);
+		/// <summary>
+		/// Up Vector
+		/// </summary>
+		public static readonly Vector2f Down = new Vector2f(0f, -1f);
+		/// <summary>
+		/// Up Vector
+		/// </summary>
+		public static readonly Vector2f Left = new Vector2f(-1f, 0f);
+		/// <summary>
+		/// Up Vector
+		/// </summary>
+		public static readonly Vector2f Right = new Vector2f(1f, 0f);
+		//RedPandaEngine end
 
 		////////////////////////////////////////////////////////////
 		/// <summary>
@@ -85,7 +102,7 @@ namespace SFML.System
 		////////////////////////////////////////////////////////////
 		public static Vector2f operator *(float x, Vector2f v) => new Vector2f(v.X * x, v.Y * x);
 
-		//PandaEngine start
+		//RedPandaEngine start
 		/// <summary>
 		/// Operator + overload ; multiply two by two each part of the vectors
 		/// </summary>
@@ -93,7 +110,7 @@ namespace SFML.System
 		/// <param name="v2">Second vector</param>
 		/// <returns>v1 + v2</returns>
 		public static Vector2f operator *(Vector2f v1, Vector2f v2) => new Vector2f(v1.X * v2.X, v1.Y * v2.Y);
-		//PandaEngine end
+		//RedPandaEngine end
 
 		////////////////////////////////////////////////////////////
 		/// <summary>
@@ -125,13 +142,53 @@ namespace SFML.System
 		////////////////////////////////////////////////////////////
 		public static bool operator !=(Vector2f v1, Vector2f v2) => !v1.Equals(v2);
 
+		//RedPandaEngine start
+		/// <summary>
+		/// normalize the vector
+		/// </summary>
+		public void Normalize()
+		{
+			float length = (float)Math.Sqrt(X * X + Y * Y);
+			X /= length;
+			Y /= length;
+		}
+
+		/// <summary>
+		/// normalize the vector if the length of the vector is supperior at tolerance
+		/// set vector to vector zero otherwise
+		/// </summary>
+		/// <param name="tolerance"></param>
+		public void SafeNormalize(float tolerance = 0.000001f)
+		{
+			float length = (float)Math.Sqrt(X * X + Y * Y);
+			if (length <= tolerance)
+			{
+				X = 0;
+				Y = 0;
+			}
+			else
+			{
+				X /= length;
+				Y /= length;
+			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns>get the square length of the vector</returns>
+		public float SquareLength()
+		{
+			return X * X + Y * Y;
+		}
+		//RedPandaEngine end
+
 		////////////////////////////////////////////////////////////
 		/// <summary>
 		/// Provide a string describing the object
 		/// </summary>
 		/// <returns>String description of the object</returns>
 		////////////////////////////////////////////////////////////
-
 		public override string ToString() => $"[Vector2f] X({X}) Y({Y})";
 
 		////////////////////////////////////////////////////////////
@@ -194,7 +251,7 @@ namespace SFML.System
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Vector2i : IEquatable<Vector2i>
 	{
-		//PandaEngine start
+		//RedPandaEngine start
 		/// <summary>
 		/// Vector null
 		/// </summary>
@@ -203,7 +260,24 @@ namespace SFML.System
 		/// Vector unitary 
 		/// </summary>
 		public static readonly Vector2i One = new Vector2i(1, 1);
-		//PandaEngine end
+
+		/// <summary>
+		/// Up Vector
+		/// </summary>
+		public static readonly Vector2i Up = new Vector2i(0, 1);
+		/// <summary>
+		/// Up Vector
+		/// </summary>
+		public static readonly Vector2i Down = new Vector2i(0, -1);
+		/// <summary>
+		/// Up Vector
+		/// </summary>
+		public static readonly Vector2i Left = new Vector2i(-1, 0);
+		/// <summary>
+		/// Up Vector
+		/// </summary>
+		public static readonly Vector2i Right = new Vector2i(1, 0);
+		//RedPandaEngine end
 
 		////////////////////////////////////////////////////////////
 		/// <summary>
@@ -267,7 +341,7 @@ namespace SFML.System
 		////////////////////////////////////////////////////////////
 		public static Vector2i operator *(int x, Vector2i v) => new Vector2i(v.X * x, v.Y * x);
 
-		//PandaEngine start
+		//RedPandaEngine start
 		/// <summary>
 		/// Operator + overload ; multiply two by two each part of the vectors
 		/// </summary>
@@ -275,7 +349,7 @@ namespace SFML.System
 		/// <param name="v2">Second vector</param>
 		/// <returns>v1 + v2</returns>
 		public static Vector2i operator *(Vector2i v1, Vector2i v2) => new Vector2i(v1.X * v2.X, v1.Y * v2.Y);
-		//PandaEngine end
+		//RedPandaEngine end
 
 		////////////////////////////////////////////////////////////
 		/// <summary>
@@ -306,6 +380,47 @@ namespace SFML.System
 		/// <returns>v1 != v2</returns>
 		////////////////////////////////////////////////////////////
 		public static bool operator !=(Vector2i v1, Vector2i v2) => !v1.Equals(v2);
+
+		//RedPandaEngine start
+		/// <summary>
+		/// normalize the vector
+		/// </summary>
+		public void Normalize()
+		{
+			int length = (int)Math.Sqrt(X * X + Y * Y);
+			X /= length;
+			Y /= length;
+		}
+
+		/// <summary>
+		/// normalize the vector if the length of the vector is supperior at tolerance
+		/// set vector to vector zero otherwise
+		/// </summary>
+		/// <param name="tolerance"></param>
+		public void SafeNormalize(float tolerance = 0.000001f)
+		{
+			int length = (int)Math.Sqrt(X * X + Y * Y);
+			if (length <= tolerance)
+			{
+				X = 0;
+				Y = 0;
+			}
+			else
+			{
+				X /= length;
+				Y /= length;
+			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns>get the square length of the vector</returns>
+		public float SquareLength()
+		{
+			return X * X + Y * Y;
+		}
+		//RedPandaEngine end
 
 		////////////////////////////////////////////////////////////
 		/// <summary>
@@ -375,7 +490,7 @@ namespace SFML.System
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Vector2u : IEquatable<Vector2u>
 	{
-		//PandaEngine start
+		//RedPandaEngine start
 		/// <summary>
 		/// Vector null
 		/// </summary>
@@ -384,7 +499,16 @@ namespace SFML.System
 		/// Vector unitary 
 		/// </summary>
 		public static readonly Vector2u One = new Vector2u(1, 1);
-		//PandaEngine end
+
+		/// <summary>
+		/// Up Vector
+		/// </summary>
+		public static readonly Vector2u Up = new Vector2u(0, 1);
+		/// <summary>
+		/// Up Vector
+		/// </summary>
+		public static readonly Vector2u Right = new Vector2u(1, 0);
+		//RedPandaEngine end
 
 		////////////////////////////////////////////////////////////
 		/// <summary>
@@ -439,7 +563,7 @@ namespace SFML.System
 		////////////////////////////////////////////////////////////
 		public static Vector2u operator *(uint x, Vector2u v) => new Vector2u(v.X * x, v.Y * x);
 
-		//PandaEngine start
+		//RedPandaEngine start
 		/// <summary>
 		/// Operator + overload ; multiply two by two each part of the vectors
 		/// </summary>
@@ -447,7 +571,7 @@ namespace SFML.System
 		/// <param name="v2">Second vector</param>
 		/// <returns>v1 + v2</returns>
 		public static Vector2u operator *(Vector2u v1, Vector2u v2) => new Vector2u(v1.X * v2.X, v1.Y * v2.Y);
-		//PandaEngine end
+		//RedPandaEngine end
 
 		////////////////////////////////////////////////////////////
 		/// <summary>
@@ -478,6 +602,47 @@ namespace SFML.System
 		/// <returns>v1 != v2</returns>
 		////////////////////////////////////////////////////////////
 		public static bool operator !=(Vector2u v1, Vector2u v2) => !v1.Equals(v2);
+
+		//RedPandaEngine start
+		/// <summary>
+		/// normalize the vector
+		/// </summary>
+		public void Normalize()
+		{
+			uint length = (uint)Math.Sqrt(X * X + Y * Y);
+			X /= length;
+			Y /= length;
+		}
+
+		/// <summary>
+		/// normalize the vector if the length of the vector is supperior at tolerance
+		/// set vector to vector zero otherwise
+		/// </summary>
+		/// <param name="tolerance"></param>
+		public void SafeNormalize(float tolerance = 0.000001f)
+		{
+			uint length = (uint)Math.Sqrt(X * X + Y * Y);
+			if (length <= tolerance)
+			{
+				X = 0;
+				Y = 0;
+			}
+			else
+			{
+				X /= length;
+				Y /= length;
+			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns>get the square length of the vector</returns>
+		public float SquareLength()
+		{
+			return X * X + Y * Y;
+		}
+		//RedPandaEngine end
 
 		////////////////////////////////////////////////////////////
 		/// <summary>

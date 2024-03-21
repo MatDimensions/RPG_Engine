@@ -234,9 +234,9 @@ namespace Engine
 			public string Name;
 			public List<InputKeys> Keys { get; private set; } = new List<InputKeys>();
 
-			public List<System.Action<InputKeys>> PressedActions { get; private set; } = new List<System.Action<InputKeys>>();
-			public List<System.Action<InputKeys>> OnPressActions { get; private set; } = new List<System.Action<InputKeys>>();
-			public List<System.Action<InputKeys>> OnReleaseActions { get; private set; } = new List<System.Action<InputKeys>>();
+			public System.Action<InputKeys> PressedActions;
+			public System.Action<InputKeys> OnPressActions;
+			public System.Action<InputKeys> OnReleaseActions;
 
 			internal bool IsPressed = false;
 		}
@@ -298,11 +298,15 @@ namespace Engine
 		{
 			m_inputMaps = new Dictionary<string, InputMap>();
 			m_currentMap = "";
+			m_onPressedInputs = new List<string>();
 			m_pressedInputs = new List<string>();
+			m_onReleasedInputs = new List<string>();
 		}
 
 		public static void Run()
 		{
+			EngineData.Window.DispatchEvents();
+
 			m_pressedInputs.Clear();
 			if (m_inputMaps.ContainsKey(m_currentMap))
 			{
@@ -318,24 +322,21 @@ namespace Engine
 							{
 								input.IsPressed = false;
 								m_onReleasedInputs.Add(input.Name);
-								foreach (Action<InputKeys> action in input.OnReleaseActions)
-									action?.Invoke(key);
+								input.OnReleaseActions?.Invoke(key);
 								break;
 							}
 							else if (Mouse.IsButtonPressed((Mouse.Button)mouseButton) && !input.IsPressed)
 							{
 								input.IsPressed = true;
 								m_onPressedInputs.Add(input.Name);
-								foreach (Action<InputKeys> action in input.OnPressActions)
-									action?.Invoke(key);
+								input.OnPressActions?.Invoke(key);
 								break;
 							}
 							else if (Mouse.IsButtonPressed((Mouse.Button)mouseButton))
 							{
 								input.IsPressed = true;
 								m_pressedInputs.Add(input.Name);
-								foreach (Action<InputKeys> action in input.PressedActions)
-									action?.Invoke(key);
+								input.PressedActions?.Invoke(key);
 								break;
 							}
 
@@ -346,24 +347,21 @@ namespace Engine
 							{
 								input.IsPressed = false;
 								m_onReleasedInputs.Add(input.Name);
-								foreach (Action<InputKeys> action in input.OnReleaseActions)
-									action?.Invoke(key);
+								input.OnReleaseActions?.Invoke(key);
 								break;
 							}
 							else if (Keyboard.IsKeyPressed((Keyboard.Key)key) && !input.IsPressed)
 							{
 								input.IsPressed = true;
 								m_onPressedInputs.Add(input.Name);
-								foreach (Action<InputKeys> action in input.OnPressActions)
-									action?.Invoke(key);
+								input.OnPressActions?.Invoke(key);
 								break;
 							}
 							else if (Keyboard.IsKeyPressed((Keyboard.Key)key))
 							{
 								input.IsPressed = true;
 								m_pressedInputs.Add(input.Name);
-								foreach (Action<InputKeys> action in input.PressedActions)
-									action?.Invoke(key);
+								input.PressedActions?.Invoke(key);
 								break;
 							}
 						}

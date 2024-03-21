@@ -14,7 +14,7 @@ namespace Engine
 			writer.Write(CenterOffset.X);
 			writer.Write(CenterOffset.Y);
 			writer.Write(Radius);
-			writer.Write(Collider.GetType().UnderlyingSystemType.FullName);
+			writer.Write(Collider == null ? "null" : Collider.GetType().UnderlyingSystemType.FullName);
 		}
 
 		public override void Deserialize(BinaryReader reader)
@@ -23,8 +23,13 @@ namespace Engine
 			CenterOffset.Y = reader.ReadSingle();
 			Radius = reader.ReadSingle();
 			string typeName = reader.ReadString();
-			ObjectHandle? oh = Activator.CreateInstance(null, typeName);
-			Collider = (ICollider)oh.Unwrap();
+			if (!string.Equals(typeName, "null"))
+			{
+				ObjectHandle? oh = Activator.CreateInstance(null, typeName);
+				Collider = (ICollider)oh.Unwrap();
+			}
+			else
+				Collider = null;
 		}
 
 		public override void InitComponent(ref CircularCollisionComponent component)

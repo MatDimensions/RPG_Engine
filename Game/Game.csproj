@@ -19,4 +19,9 @@
 		<ProjectReference Include="..\src\Engine\EngineInit\EngineAPI.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Code\Components\" />
+	  <Folder Include="Code\Systems\" />
+	</ItemGroup>
+
 </Project>

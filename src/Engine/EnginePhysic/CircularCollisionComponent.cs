@@ -9,8 +9,5 @@ namespace Engine
 		public float Radius;
 		public bool IsColliding;
 		public ICollider Collider;
-#if SAVE_ENTITY_COLLIDE_WITH
-		public EcsPackedEntity EntityCollideWith;
-#endif
 	}
 }

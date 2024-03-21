@@ -88,8 +88,6 @@ namespace Engine
 					EngineData.Window.Draw(sprite, m_renderStates);
 				}
 
-				EngineData.Window.Draw(sprite, m_renderStates);
-
 				EngineData.Window.Display();
 				return;
 			}
@@ -159,8 +157,6 @@ namespace Engine
 
 					EngineData.Window.Draw(sprite, m_renderStates);
 				}
-
-				EngineData.Window.Draw(sprite, m_renderStates);
 			}
 #endif
 
@@ -330,7 +326,7 @@ namespace Engine
 			if (m_sortedRenderers.Count == 0)
 			{
 				m_sortedRenderers.Capacity = m_renderers.Count;
-				Debug.Log("m_renderers count : " + m_renderers.Count);
+				//Debug.Log("m_renderers count : " + m_renderers.Count);
 				foreach (int entity in m_renderers)
 				{
 					place = GetRendererInsertionPlace(m_sortedRenderers, ref m_transformPool.Value.Get(entity), IsRendererAtCorrectIndex);
@@ -366,12 +362,11 @@ namespace Engine
 
 		private void RemoveRenderer(int entity)
 		{
-			ref readonly RendererComponent renderer = ref m_rendererPool.Value.Get(entity);
-			if (renderer.IsTerrain)
-				m_terrainRenderers.RemoveAt(m_registeredRenderers[entity]);
+			if (m_terrainRenderers.Contains(entity))
+				m_terrainRenderers.Remove(entity);
 			else
 			{
-				m_renderers.RemoveAt(m_registeredRenderers[entity]);
+				m_renderers.Remove(entity);
 				m_sortedRenderers.Clear();
 			}
 			m_registeredRenderers.Remove(entity);

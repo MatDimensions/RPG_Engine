@@ -18,19 +18,10 @@ namespace Engine
 			InitComponent(ref component);
 		}
 
-		public virtual void Serialize(BinaryWriter writer)
-		{
-			throw new NotImplementedException("Serialize of " + this.GetType().UnderlyingSystemType.Name + " isn't implemented");
-		}
+		public abstract void Serialize(BinaryWriter writer);
 
-		public virtual void Deserialize(BinaryReader reader)
-		{
-			throw new NotImplementedException("Deserialize of " + this.GetType().UnderlyingSystemType.Name + " isn't implemented");
-		}
+		public abstract void Deserialize(BinaryReader reader);
 
-		public virtual void InitComponent(ref T component)
-		{
-			throw new NotImplementedException("Initialisation of component of " + this.GetType().UnderlyingSystemType.Name + " isn't implemented");
-		}
+		public abstract void InitComponent(ref T component);
 	}
 }

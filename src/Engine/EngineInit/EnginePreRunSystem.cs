@@ -19,33 +19,7 @@ namespace Engine
 		{
 			Debug.WriteOnFile();
 
-			EngineData.Window.DispatchEvents();
-
 			InputUtility.Run();
-
-			if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
-			{
-				RendererSystem.CloseWindow(EngineData.Window, null);
-			}
-
-			if (InputUtility.IsInputPressed("CameraUp"))
-			{
-				Camera.SetPosition(Camera.GetPosition() + new Vector2f(0, 1f));
-			}
-			else if (InputUtility.IsInputPressed("CameraDown"))
-			{
-				Camera.SetPosition(Camera.GetPosition() + new Vector2f(0, -1f));
-			}
-			if (InputUtility.IsInputPressed("CameraLeft"))
-			{
-				Camera.SetPosition(Camera.GetPosition() + new Vector2f(-1f, 0f));
-			}
-			else if (InputUtility.IsInputPressed("CameraRight"))
-			{
-				Camera.SetPosition(Camera.GetPosition() + new Vector2f(1f, 0f));
-			}
 		}
-
-		private EcsWorldInject m_world;
 	}
 }
