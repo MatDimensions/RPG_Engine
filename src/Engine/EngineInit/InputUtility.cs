@@ -5,7 +5,7 @@ namespace Engine
 {
 	public static class InputUtility
 	{
-		public enum InputKeys : Int32
+		public enum InputKeys : int
 		{
 			/// <summary>The left mouse button</summary>
 			MouseLeft = -2,
@@ -237,6 +237,8 @@ namespace Engine
 			public List<System.Action<InputKeys>> PressedActions { get; private set; } = new List<System.Action<InputKeys>>();
 			public List<System.Action<InputKeys>> OnPressActions { get; private set; } = new List<System.Action<InputKeys>>();
 			public List<System.Action<InputKeys>> OnReleaseActions { get; private set; } = new List<System.Action<InputKeys>>();
+
+			internal bool IsPressed = false;
 		}
 
 		public class InputMap
@@ -308,25 +310,60 @@ namespace Engine
 				Mouse.Button? mouseButton = null;
 				foreach (var input in currentMap.Inputs)
 				{
-					foreach (int key in input.Keys)
+					foreach (InputKeys key in input.Keys)
 					{
-						if (TryGetMouseInputFromIntInput(key, out mouseButton))
+						if (TryGetMouseInputFromIntInput((int)key, out mouseButton))
 						{
-							if (Mouse.IsButtonPressed((Mouse.Button)mouseButton))
+							if (!Mouse.IsButtonPressed((Mouse.Button)mouseButton) && input.IsPressed)
 							{
-								m_pressedInputs.Add(input.Name);
-								foreach (Action<InputKeys> action in input.PressedActions)
-									action?.Invoke((InputKeys)key);
+								input.IsPressed = false;
+								m_onReleasedInputs.Add(input.Name);
+								foreach (Action<InputKeys> action in input.OnReleaseActions)
+									action?.Invoke(key);
 								break;
 							}
+							else if (Mouse.IsButtonPressed((Mouse.Button)mouseButton) && !input.IsPressed)
+							{
+								input.IsPressed = true;
+								m_onPressedInputs.Add(input.Name);
+								foreach (Action<InputKeys> action in input.OnPressActions)
+									action?.Invoke(key);
+								break;
+							}
+							else if (Mouse.IsButtonPressed((Mouse.Button)mouseButton))
+							{
+								input.IsPressed = true;
+								m_pressedInputs.Add(input.Name);
+								foreach (Action<InputKeys> action in input.PressedActions)
+									action?.Invoke(key);
+								break;
+							}
+
 						}
 						else
 						{
-							if (Keyboard.IsKeyPressed((Keyboard.Key)key))
+							if (!Keyboard.IsKeyPressed((Keyboard.Key)key) && input.IsPressed)
 							{
+								input.IsPressed = false;
+								m_onReleasedInputs.Add(input.Name);
+								foreach (Action<InputKeys> action in input.OnReleaseActions)
+									action?.Invoke(key);
+								break;
+							}
+							else if (Keyboard.IsKeyPressed((Keyboard.Key)key) && !input.IsPressed)
+							{
+								input.IsPressed = true;
+								m_onPressedInputs.Add(input.Name);
+								foreach (Action<InputKeys> action in input.OnPressActions)
+									action?.Invoke(key);
+								break;
+							}
+							else if (Keyboard.IsKeyPressed((Keyboard.Key)key))
+							{
+								input.IsPressed = true;
 								m_pressedInputs.Add(input.Name);
 								foreach (Action<InputKeys> action in input.PressedActions)
-									action?.Invoke((InputKeys)key);
+									action?.Invoke(key);
 								break;
 							}
 						}
@@ -365,6 +402,18 @@ namespace Engine
 			return m_pressedInputs.Contains(inputName);
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool IsInputOnPress(string inputName)
+		{
+			return m_onPressedInputs.Contains(inputName);
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool IsInputOnRelease(string inputName)
+		{
+			return m_onReleasedInputs.Contains(inputName);
+		}
+
 		private static bool TryGetMouseInputFromIntInput(int input, out Mouse.Button? button)
 		{
 			if (input < -1)
@@ -386,5 +435,7 @@ namespace Engine
 		private static Dictionary<string, InputMap> m_inputMaps;
 
 		private static List<string> m_pressedInputs;
+		private static List<string> m_onReleasedInputs;
+		private static List<string> m_onPressedInputs;
 	}
 }
