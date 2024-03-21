@@ -14,6 +14,6 @@ public class MoveToCursorSystem : IEcsRunSystem
 		}
 	}
 
-	private EcsFilterInject<Inc<FollowCursorComponent, TransformComponent>> m_filter;
+	private EcsFilterInject<Inc<FollowCursorTag, TransformComponent>> m_filter;
 	private EcsPoolInject<TransformComponent> m_transformPool;
 }

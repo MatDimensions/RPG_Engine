@@ -4,7 +4,7 @@ using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using SFML.System;
 
-namespace Global
+namespace Game
 {
 	public static class Program
 	{
@@ -49,7 +49,7 @@ namespace Global
 			collisionDebugEntity.LoadFromFile(EngineConfig.DataDirectory + "CollideEntity.entityConfig");
 			collisionDebugEntity.CreateEntity(world);
 
-			world.GetPool<FollowCursorComponent>().Add(collisionDebugEntity.CreateEntity(world));
+			world.GetPool<FollowCursorTag>().Add(collisionDebugEntity.CreateEntity(world));
 			#endregion
 
 			while (EngineData.Window.IsOpen)
