@@ -27,7 +27,7 @@ namespace Engine
 					animationComp.AnimationCurrentTime = 0;
 					animationComp.AnimationStartIndex = multiAnimationComp.AnimationsStartIndex[animationIndex];
 
-					multiAnimationComp.HaveAnimationChanged = false;
+					multiAnimationComp.LastAnimation = multiAnimationComp.CurrentAnimation;
 				}
 			}
 
@@ -54,7 +54,7 @@ namespace Engine
 					timedAnimComp.AnimationStartIndex = timedAnimComp.CurrentSprite;
 					timedAnimComp.AnimationLastIndex = timedAnimComp.AnimationStartIndex + timedAnimComp.SpritesNumber - 1;
 
-					multiTimedAnimComp.HaveAnimationChanged = false;
+					multiTimedAnimComp.LastAnimation = multiTimedAnimComp.CurrentAnimation;
 				}
 			}
 

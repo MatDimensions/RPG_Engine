@@ -4,8 +4,15 @@ using System.Runtime.CompilerServices;
 
 namespace Engine
 {
-	public class CheckCollisionSystem : IEcsRunSystem
+	public class CheckCollisionSystem : IEcsInitSystem, IEcsRunSystem
 	{
+		public void Init(IEcsSystems systems)
+		{
+#if COLLIDE_ENTITY
+			m_collideEntityConfig = new();
+#endif
+		}
+
 		public void Run(IEcsSystems systems)
 		{
 			int[] entities = m_circularFilter.Value.GetRawEntities();
@@ -24,9 +31,10 @@ namespace Engine
 					{
 						firstCircularCollisionComp.IsColliding = true;
 						secondCircularCollisionComp.IsColliding = true;
-#if SAVE_ENTITY_COLLIDE_WITH
-						firstCircularCollisionComp.EntityCollideWith = m_world.Value.PackEntity(entities[j]);
-						secondCircularCollisionComp.EntityCollideWith = m_world.Value.PackEntity(entities[i]);
+#if COLLIDE_ENTITY
+						ref CollideComponent collideComp = ref m_collidePool.Value.Get(m_collideEntityConfig.CreateEntity(m_world.Value));
+						collideComp.FirstEntity = m_world.Value.PackEntity(entities[i]);
+						collideComp.SecondEntity = m_world.Value.PackEntity(entities[j]);
 #endif
 #if CALL_COLLIDER_WHEN_COLLIDE
 						EcsPackedEntityWithWorld firstEntityPacked = m_world.Value.PackEntityWithWorld(entities[i]);
@@ -50,5 +58,10 @@ namespace Engine
 		private EcsFilterInject<Inc<TransformComponent, CircularCollisionComponent>> m_circularFilter;
 		private EcsPoolInject<TransformComponent> m_transformPool;
 		private EcsPoolInject<CircularCollisionComponent> m_circularCollisionPool;
+#if COLLIDE_ENTITY
+		private EcsPoolInject<CollideComponent> m_collidePool;
+
+		private CollideEntityConfig m_collideEntityConfig;
+#endif
 	}
 }

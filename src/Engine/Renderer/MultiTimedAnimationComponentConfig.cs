@@ -11,11 +11,10 @@
 
 		public MultiTimedAnimationComponentConfig() { }
 
-		public MultiTimedAnimationComponentConfig(string definitionDirectory, string definitionFile, bool isEngineAnim)
+		public MultiTimedAnimationComponentConfig(string definitionDirectory, string definitionFile)
 		{
 			m_definitionDirectory = definitionDirectory;
 			m_definitionFile = definitionFile;
-			m_isEngineAnim = isEngineAnim;
 			Init();
 		}
 
@@ -23,14 +22,12 @@
 		{
 			writer.Write(m_definitionDirectory);
 			writer.Write(m_definitionFile);
-			writer.Write(m_isEngineAnim);
 		}
 
 		public override void Deserialize(BinaryReader reader)
 		{
 			m_definitionDirectory = reader.ReadString();
 			m_definitionFile = reader.ReadString();
-			m_isEngineAnim = reader.ReadBoolean();
 			Init();
 		}
 
@@ -45,10 +42,10 @@
 
 		private void Init()
 		{
-			Init(m_definitionDirectory, m_definitionFile, m_isEngineAnim);
+			Init(m_definitionDirectory, m_definitionFile);
 		}
 
-		private void Init(string definitionDirectory, string definitionFile, bool isEngineAnim)
+		private void Init(string definitionDirectory, string definitionFile)
 		{
 			using (StreamReader sr = new StreamReader(EngineConfig.DataDirectory + definitionDirectory + definitionFile))
 			{
@@ -79,8 +76,7 @@
 				{
 					line = sr.ReadLine();
 					splitLine = line.Split(' ');
-					SpritesNames[i] = isEngineAnim ? "../" : "";
-					SpritesNames[i] += definitionDirectory + splitLine[0];
+					SpritesNames[i] = "../" + definitionDirectory + splitLine[0];
 					SpritesTime[i] = float.Parse(splitLine[1]);
 					SpriteUtility.LoadSprite(SpritesNames[i]);
 				}
@@ -89,6 +85,5 @@
 
 		private string m_definitionDirectory;
 		private string m_definitionFile;
-		private bool m_isEngineAnim;
 	}
 }

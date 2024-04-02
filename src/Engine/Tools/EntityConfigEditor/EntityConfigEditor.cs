@@ -1,4 +1,5 @@
 using Engine;
+using Game;
 using SFML.Graphics;
 using SFML.System;
 using System.Diagnostics;
@@ -17,11 +18,6 @@ namespace EntityConfigEditor
 
 			InitializeComponent();
 
-			/*scrollBar.Value = panel.VerticalScroll.Value;
-			scrollBar.Minimum = panel.VerticalScroll.Minimum;
-			scrollBar.Maximum = panel.VerticalScroll.Maximum;
-			scrollBar.Enabled = true;*/
-
 			panel.AutoScroll = true;
 			panel.VerticalScroll.Enabled = true;
 			panel.VerticalScroll.Visible = true;
@@ -36,9 +32,11 @@ namespace EntityConfigEditor
 			saveFileDialog.DefaultExt = ".entityConfig";
 			saveFileDialog.InitialDirectory = Directory.GetCurrentDirectory() + "/../../../../../../../x64/Datas/";
 			saveFileDialog.RestoreDirectory = false;
-			saveFileDialog.CheckFileExists = true;
+			saveFileDialog.CheckFileExists = false;
 			saveFileDialog.Filter = "EntityConfig file (*.entityConfig)|*.entityConfig";
 			AddEntityConfigs();
+
+			ChangeEntityConfigSelected(this, null);
 		}
 
 		public List<EntityConfig> EntityConfigs { get => m_entityConfigs; }
@@ -76,13 +74,6 @@ namespace EntityConfigEditor
 			currentEntityConfig.LoadFromFile(openFileDialog.FileName);
 
 			DisplayConfig();
-
-			//TextBox textBox = new();
-			//textBox.Location = new Point(20, 30);
-			//textBox.TextChanged += (sender, e) => { /*textBox.Text;*/ };
-			//si problems d'overlapp : textBox.Location = new Point(x, y); incrémente mon this.y et prendre celui-là
-
-			//panel.Controls.Add(textBox);
 		}
 
 		private void SaveEntityConfig(object sender, EventArgs e)
@@ -228,8 +219,12 @@ namespace EntityConfigEditor
 						saveFields += () =>
 						{
 							string typeName = box.Text;
-							ObjectHandle? oh = Activator.CreateInstance("EnginePhysic", typeName);
-							ICollider collider = typeName == "null" ? null : (ICollider)oh.Unwrap();
+							ICollider collider = null;
+							if (!string.Equals(typeName, "null"))
+							{
+								ObjectHandle? oh = Activator.CreateInstance("EnginePhysic", typeName);
+								collider = typeName == "null" ? null : (ICollider)oh.Unwrap();
+							}
 							field.SetValue(currentEntityConfig.GetType().GetField(componentConfig.Name).GetValue(currentEntityConfig), collider);
 						};
 						panel.Controls.Add(box);
@@ -244,6 +239,13 @@ namespace EntityConfigEditor
 					}
 				}
 			}
+		}
+
+		private void AddEntityConfigs()
+		{
+			m_entityConfigs.Add(new DebugEntityConfig());
+			m_entityConfigs.Add(new AnimatedDebugEnityConfig());
+			m_entityConfigs.Add(new CollisionDebugEntityConfig());
 		}
 
 		private FileStream currentEntityConfigFile;

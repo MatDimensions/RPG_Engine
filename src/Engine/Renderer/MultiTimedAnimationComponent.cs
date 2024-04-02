@@ -8,10 +8,10 @@
 			set
 			{
 				m_currentAnimation = value;
-				m_haveAnimationChanged = true;
 			}
 		}
-		public bool HaveAnimationChanged { get => m_haveAnimationChanged; internal set => m_haveAnimationChanged = value; }
+		public bool HaveAnimationChanged { get => !string.Equals(m_currentAnimation, m_lastAnimation); }
+		internal string LastAnimation { set => m_lastAnimation = value; }
 
 		public Dictionary<string, int> Animations;
 		public float[] SpritesTime;
@@ -20,6 +20,6 @@
 		public string[] SpritesNames;
 
 		private string m_currentAnimation;
-		private bool m_haveAnimationChanged;
+		private string m_lastAnimation;
 	}
 }
