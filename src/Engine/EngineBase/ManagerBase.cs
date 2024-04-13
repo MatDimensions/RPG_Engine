@@ -25,10 +25,7 @@ namespace Engine
 #endif
 		}
 
-		protected virtual void InitInstance()
-		{
-
-		}
+		protected abstract void InitInstance();
 
 		#endregion
 	}
