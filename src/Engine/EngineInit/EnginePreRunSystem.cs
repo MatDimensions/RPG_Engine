@@ -5,16 +5,8 @@ using SFML.Window;
 
 namespace Engine
 {
-	public class EnginePreRunSystem : IEcsInitSystem, IEcsRunSystem
+	public class EnginePreRunSystem : IEcsRunSystem
 	{
-		Random rand = new Random(0);
-		DebugEntityConfig entityconfig;
-		public void Init(IEcsSystems systems)
-		{
-			entityconfig = new DebugEntityConfig();
-			entityconfig.LoadFromFile(EngineConfig.DataDirectory + "truc.entityConfig");
-		}
-
 		public void Run(IEcsSystems systems)
 		{
 			Debug.WriteOnFile();

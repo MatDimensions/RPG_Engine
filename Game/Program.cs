@@ -22,7 +22,7 @@ namespace Game
 			systems.Init();
 
 			DebugEntityConfig config = new DebugEntityConfig();
-			config.LoadFromFile(EngineConfig.DataDirectory + "truc.entityConfig");
+			config.LoadFromFile(EngineConfig.DataDirectory + "DebugEntity.entityConfig");
 			AnimatedDebugEnityConfig animated = new AnimatedDebugEnityConfig();
 			animated.LoadFromFile(EngineConfig.DataDirectory + "AnimEntity.entityConfig");
 			CollisionDebugEntityConfig collision = new CollisionDebugEntityConfig();

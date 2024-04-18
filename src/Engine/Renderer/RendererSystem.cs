@@ -352,10 +352,11 @@ namespace Engine
 
 		private void CheckLayers()
 		{
-			for (int i = 0; i < m_layers.Count; i++)
+			int index = 0;
+			foreach (Layer layer in m_layers)
 			{
-				Layer layer = m_layers[i];
-				bool haveToBeStatic = RendererUtility.IsLayerStatic(i);
+				bool haveToBeStatic = RendererUtility.IsLayerStatic(index);
+
 				if (haveToBeStatic && !layer.IsStaticLayer)
 					layer.IsStaticLayer = haveToBeStatic;
 				else if (!haveToBeStatic && layer.IsStaticLayer)
@@ -365,6 +366,7 @@ namespace Engine
 				}
 
 				SortLayer(layer);
+				++index;
 			}
 		}
 
