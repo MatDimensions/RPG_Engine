@@ -363,6 +363,26 @@
             Vector unitary 
             </summary>
         </member>
+        <member name="F:SFML.System.Vector2f.Up">
+            <summary>
+            Up Vector
+            </summary>
+        </member>
+        <member name="F:SFML.System.Vector2f.Down">
+            <summary>
+            Up Vector
+            </summary>
+        </member>
+        <member name="F:SFML.System.Vector2f.Left">
+            <summary>
+            Up Vector
+            </summary>
+        </member>
+        <member name="F:SFML.System.Vector2f.Right">
+            <summary>
+            Up Vector
+            </summary>
+        </member>
         <member name="M:SFML.System.Vector2f.#ctor(System.Single,System.Single)">
             <summary>
             Construct the vector from its coordinates
@@ -441,6 +461,24 @@
             <param name="v2">Second vector</param>
             <returns>v1 != v2</returns>
         </member>
+        <member name="M:SFML.System.Vector2f.Normalize">
+            <summary>
+            normalize the vector
+            </summary>
+        </member>
+        <member name="M:SFML.System.Vector2f.SafeNormalize(System.Single)">
+            <summary>
+            normalize the vector if the length of the vector is supperior at tolerance
+            set vector to vector zero otherwise
+            </summary>
+            <param name="tolerance"></param>
+        </member>
+        <member name="M:SFML.System.Vector2f.SquareLength">
+            <summary>
+            
+            </summary>
+            <returns>get the square length of the vector</returns>
+        </member>
         <member name="M:SFML.System.Vector2f.ToString">
             <summary>
             Provide a string describing the object
@@ -501,6 +539,26 @@
         <member name="F:SFML.System.Vector2i.One">
             <summary>
             Vector unitary 
+            </summary>
+        </member>
+        <member name="F:SFML.System.Vector2i.Up">
+            <summary>
+            Up Vector
+            </summary>
+        </member>
+        <member name="F:SFML.System.Vector2i.Down">
+            <summary>
+            Up Vector
+            </summary>
+        </member>
+        <member name="F:SFML.System.Vector2i.Left">
+            <summary>
+            Up Vector
+            </summary>
+        </member>
+        <member name="F:SFML.System.Vector2i.Right">
+            <summary>
+            Up Vector
             </summary>
         </member>
         <member name="M:SFML.System.Vector2i.#ctor(System.Int32,System.Int32)">
@@ -581,6 +639,24 @@
             <param name="v2">Second vector</param>
             <returns>v1 != v2</returns>
         </member>
+        <member name="M:SFML.System.Vector2i.Normalize">
+            <summary>
+            normalize the vector
+            </summary>
+        </member>
+        <member name="M:SFML.System.Vector2i.SafeNormalize(System.Single)">
+            <summary>
+            normalize the vector if the length of the vector is supperior at tolerance
+            set vector to vector zero otherwise
+            </summary>
+            <param name="tolerance"></param>
+        </member>
+        <member name="M:SFML.System.Vector2i.SquareLength">
+            <summary>
+            
+            </summary>
+            <returns>get the square length of the vector</returns>
+        </member>
         <member name="M:SFML.System.Vector2i.ToString">
             <summary>
             Provide a string describing the object
@@ -641,6 +717,16 @@
         <member name="F:SFML.System.Vector2u.One">
             <summary>
             Vector unitary 
+            </summary>
+        </member>
+        <member name="F:SFML.System.Vector2u.Up">
+            <summary>
+            Up Vector
+            </summary>
+        </member>
+        <member name="F:SFML.System.Vector2u.Right">
+            <summary>
+            Up Vector
             </summary>
         </member>
         <member name="M:SFML.System.Vector2u.#ctor(System.UInt32,System.UInt32)">
@@ -713,6 +799,24 @@
             <param name="v1">First vector</param>
             <param name="v2">Second vector</param>
             <returns>v1 != v2</returns>
+        </member>
+        <member name="M:SFML.System.Vector2u.Normalize">
+            <summary>
+            normalize the vector
+            </summary>
+        </member>
+        <member name="M:SFML.System.Vector2u.SafeNormalize(System.Single)">
+            <summary>
+            normalize the vector if the length of the vector is supperior at tolerance
+            set vector to vector zero otherwise
+            </summary>
+            <param name="tolerance"></param>
+        </member>
+        <member name="M:SFML.System.Vector2u.SquareLength">
+            <summary>
+            
+            </summary>
+            <returns>get the square length of the vector</returns>
         </member>
         <member name="M:SFML.System.Vector2u.ToString">
             <summary>

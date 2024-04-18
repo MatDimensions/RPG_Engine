@@ -2,6 +2,8 @@
 using Leopotam.EcsLite.Di;
 using SFML.Graphics;
 using SFML.System;
+using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 
 namespace Engine
 {
@@ -21,10 +23,7 @@ namespace Engine
 
 			public void OnEntityDestroyed(int entity)
 			{
-				if (m_rendererSystem.m_registeredRenderers.ContainsKey(entity))
-				{
-					m_rendererSystem.RemoveRenderer(entity);
-				}
+				m_rendererSystem.RemoveRenderer(entity);
 			}
 
 			public void OnFilterCreated(EcsFilter filter) { }
@@ -35,9 +34,39 @@ namespace Engine
 
 			private RendererSystem m_rendererSystem;
 		}
+
+		private class Layer
+		{
+			internal List<int> Renderers = new();
+			internal List<int> SortedRenderers = new();
+			internal bool IsStaticLayer = false;
+			internal bool HaveToResort = false;
+
+			internal void Add(int entity)
+			{
+				Renderers.Add(entity);
+				if (!IsStaticLayer)
+				{
+					SortedRenderers.Clear();
+					HaveToResort = true;
+				}
+			}
+
+			internal void Remove(int entity)
+			{
+				Renderers.Remove(entity);
+				SortedRenderers.Remove(entity);
+			}
+
+			internal Layer(int layerLevel)
+			{
+				IsStaticLayer = RendererUtility.IsLayerStatic(layerLevel);
+			}
+		}
 		#endregion //Class
 
 		#region Public
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void CloseWindow(object sender, EventArgs e)
 		{
 			if (sender is RenderWindow window)
@@ -50,8 +79,7 @@ namespace Engine
 		{
 			m_registeredRenderers = new Dictionary<int, int>();
 			m_terrainRenderers = new List<int>();
-			m_renderers = new List<int>();
-			m_sortedRenderers = new List<int>();
+			m_layers = new();
 
 			m_invertVector = new Vector2f(1f, -1f);
 			m_scaleVector = new Vector2f(1f, 1f);
@@ -98,29 +126,24 @@ namespace Engine
 				ref RendererComponent rendererComp = ref m_rendererPool.Value.Get(entity);
 				ref TransformComponent transform = ref m_transformPool.Value.Get(entity);
 
-				if (rendererComp.IsTerrain)
+				if (rendererComp.IsTerrain && !rendererComp.IsRegistered)
 				{
-					if (!m_registeredRenderers.ContainsKey(entity))
-					{
-						AddTerrainRenderer(entity, ref transform);
-					}
+					AddTerrainRenderer(entity, ref transform);
+					rendererComp.IsRegistered = true;
 				}
-				else
+				else if (!rendererComp.IsTerrain)
 				{
-					if (!m_registeredRenderers.ContainsKey(entity))
+					if (!rendererComp.IsRegistered)
 					{
-						AddRenderer(entity);
+						AddRenderer(entity, ref rendererComp, ref transform);
+						rendererComp.IsRegistered = true;
 					}
-
-					if (!rendererComp.IsStatic)
-					{
-						m_haveToResort = m_haveToResort || transform.HasMoved;
-					}
+					if (!m_layers[rendererComp.Layer].IsStaticLayer)
+						m_layers[rendererComp.Layer].HaveToResort |= transform.HasMoved;
 				}
 			}
 
-			if (m_haveToResort)
-				SortRenderers();
+			CheckLayers();
 
 			EngineData.Window.Clear();
 
@@ -131,9 +154,12 @@ namespace Engine
 			}
 
 			//Draw others
-			foreach (int entity in m_sortedRenderers)
+			foreach (Layer layer in m_layers)
 			{
-				DisplayRenderer(ref m_rendererPool.Value.Get(entity), ref m_transformPool.Value.Get(entity), EngineData.Window);
+				foreach (int entity in layer.SortedRenderers)
+				{
+					DisplayRenderer(ref m_rendererPool.Value.Get(entity), ref m_transformPool.Value.Get(entity), EngineData.Window);
+				}
 			}
 
 #if DEBUG
@@ -161,8 +187,6 @@ namespace Engine
 #endif
 
 			EngineData.Window.Display();
-
-			m_haveToResort = false;
 		}
 
 		public void Destroy(IEcsSystems systems)
@@ -189,6 +213,7 @@ namespace Engine
 			sprite.Scale = m_scaleVector;
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private int IsTerrainRendererAtCorrectIndex(
 			ref TransformComponent renderer,
 			ref TransformComponent previousRenderer,
@@ -204,6 +229,7 @@ namespace Engine
 				return 0;
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private int IsRendererAtCorrectIndex(
 			ref TransformComponent renderer,
 			ref TransformComponent previousRenderer,
@@ -299,77 +325,77 @@ namespace Engine
 			throw new Exception("No place for renderer found");
 		}
 
-		private void AddTerrainRenderer(int entity, ref TransformComponent renderer)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void AddTerrainRenderer(int entity, ref TransformComponent transform)
 		{
-			int place = GetRendererInsertionPlace(m_terrainRenderers, ref renderer, IsTerrainRendererAtCorrectIndex);
-			m_registeredRenderers.Add(entity, place);
+			int place = GetRendererInsertionPlace(m_terrainRenderers, ref transform, IsTerrainRendererAtCorrectIndex);
 			m_terrainRenderers.Insert(place, entity);
 		}
 
-		private void AddRenderer(int entity)
+		private void AddRenderer(int entity, ref RendererComponent renderer, ref TransformComponent transform)
 		{
-			m_renderers.Add(entity);
-			m_registeredRenderers.Add(entity, m_renderers.Count - 1);
+			while (m_layers.Count - 1 <= renderer.Layer)
+			{
+				m_layers.Add(new Layer(m_layers.Count));
+			}
 
-			m_sortedRenderers.Clear();
-			m_haveToResort = true;
+			m_layers[renderer.Layer].Add(entity);
+
+			if (m_layers[renderer.Layer].IsStaticLayer)
+			{
+				int place = GetRendererInsertionPlace(m_layers[renderer.Layer].SortedRenderers, ref transform, IsRendererAtCorrectIndex);
+				m_layers[renderer.Layer].SortedRenderers.Insert(place, entity);
+			}
+
+			m_registeredRenderers.Add(entity, renderer.Layer);
 		}
 
-		private void SortRenderers()
+		private void CheckLayers()
 		{
-			if (m_renderers.Count <= 0)
+			int index = 0;
+			foreach (Layer layer in m_layers)
 			{
-				return;
-			}
+				bool haveToBeStatic = RendererUtility.IsLayerStatic(index);
 
-			int place = 0;
-			if (m_sortedRenderers.Count == 0)
-			{
-				m_sortedRenderers.Capacity = m_renderers.Count;
-				//Debug.Log("m_renderers count : " + m_renderers.Count);
-				foreach (int entity in m_renderers)
+				if (haveToBeStatic && !layer.IsStaticLayer)
+					layer.IsStaticLayer = haveToBeStatic;
+				else if (!haveToBeStatic && layer.IsStaticLayer)
 				{
-					place = GetRendererInsertionPlace(m_sortedRenderers, ref m_transformPool.Value.Get(entity), IsRendererAtCorrectIndex);
-					//Debug.Log("Place : " + place);
-					m_sortedRenderers.Insert(place, entity);
+					layer.HaveToResort = true;
+					layer.IsStaticLayer = haveToBeStatic;
 				}
-			}
 
-			int[] staticRenders = new int[m_renderers.Count];
-			int[] otherRenderers = new int[m_renderers.Count];
-			int currentStaticIndex = 0;
-			int currentOtherIndex = 0;
-			ref RendererComponent renderer = ref m_rendererPool.Value.Get(m_sortedRenderers[0]);
-			foreach (int entity in m_sortedRenderers)
-			{
-				renderer = ref m_rendererPool.Value.Get(entity);
-				if (renderer.IsStatic)
-				{
-					staticRenders[currentStaticIndex] = entity;
-					++currentStaticIndex;
-				}
-				else
-				{
-					otherRenderers[currentOtherIndex] = entity;
-					++currentOtherIndex;
-				}
+				SortLayer(layer);
+				++index;
 			}
-
-			m_sortedRenderers.Clear();
-			m_sortedRenderers.AddRange(staticRenders.Take(currentStaticIndex));
-			m_sortedRenderers.AddRange(otherRenderers.Take(currentOtherIndex));
 		}
 
+		private void SortLayer(Layer layer)
+		{
+			if (layer.HaveToResort)
+			{
+				layer.SortedRenderers.Clear();
+				int place;
+
+				foreach (int entity in layer.Renderers)
+				{
+					place = GetRendererInsertionPlace(layer.SortedRenderers, ref m_transformPool.Value.Get(entity), IsRendererAtCorrectIndex);
+					layer.SortedRenderers.Insert(place, entity);
+				}
+				layer.HaveToResort = false;
+			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void RemoveRenderer(int entity)
 		{
 			if (m_terrainRenderers.Contains(entity))
 				m_terrainRenderers.Remove(entity);
-			else
+			else if (m_registeredRenderers.ContainsKey(entity))
 			{
-				m_renderers.Remove(entity);
-				m_sortedRenderers.Clear();
+				m_layers[m_registeredRenderers[entity]].Remove(entity);
+				m_registeredRenderers.Remove(entity);
 			}
-			m_registeredRenderers.Remove(entity);
 		}
 
 		private void DisplayRenderer(ref RendererComponent renderer, ref TransformComponent transform, RenderWindow window)
@@ -408,15 +434,12 @@ namespace Engine
 
 		private Dictionary<int, int> m_registeredRenderers;
 		private List<int> m_terrainRenderers;
-		private List<int> m_renderers;
 
-		private List<int> m_sortedRenderers;
+		private List<Layer> m_layers;
 
 		private Vector2f m_invertVector;
 		private Vector2f m_scaleVector;
 		private RenderStates m_renderStates;
-
-		private bool m_haveToResort = true;
 
 		private delegate int SortFunction(ref TransformComponent component, ref TransformComponent previous, ref TransformComponent next);
 		#endregion //Fields

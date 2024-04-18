@@ -21,6 +21,17 @@ namespace Game
 			systems.Inject();
 			systems.Init();
 
+			DebugEntityConfig config = new DebugEntityConfig();
+			config.LoadFromFile(EngineConfig.DataDirectory + "DebugEntity.entityConfig");
+			AnimatedDebugEnityConfig animated = new AnimatedDebugEnityConfig();
+			animated.LoadFromFile(EngineConfig.DataDirectory + "AnimEntity.entityConfig");
+			CollisionDebugEntityConfig collision = new CollisionDebugEntityConfig();
+			collision.LoadFromFile(EngineConfig.DataDirectory + "CollideEntity.entityConfig");
+
+			config.CreateEntity(world);
+			animated.CreateEntity(world);
+			collision.CreateEntity(world);
+
 			while (EngineData.Window.IsOpen)
 			{
 				EngineData.DeltaTime = clock.Restart().AsSeconds();

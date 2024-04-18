@@ -7,8 +7,8 @@ namespace Engine
 		public Sprite Sprite = null;
 		public Shader Shader = null;
 		public BlendMode BlendMode = BlendMode.Alpha;
+		public int Layer;
 		public bool IsTerrain = false;
-		public bool IsStatic = false;
 
 		public RendererComponentConfig() : this(SpriteUtility.GetSprite(EngineConfig.DebugSprite), BlendMode.Alpha) { }
 
@@ -17,13 +17,13 @@ namespace Engine
 			BlendMode blendMode,
 			Shader shader = null,
 			bool isTerrain = false,
-			bool isStatic = false)
+			int layer = 0)
 		{
 			Sprite = sprite;
 			BlendMode = blendMode;
 			Shader = shader;
 			IsTerrain = isTerrain;
-			IsStatic = isStatic;
+			Layer = layer;
 		}
 
 		public override void Serialize(BinaryWriter writer)
@@ -37,7 +37,7 @@ namespace Engine
 			writer.Write((int)BlendMode.AlphaDstFactor);
 			writer.Write((int)BlendMode.AlphaEquation);
 			writer.Write(IsTerrain);
-			writer.Write(IsStatic);
+			writer.Write(Layer);
 		}
 
 		public override void Deserialize(BinaryReader reader)
@@ -52,7 +52,7 @@ namespace Engine
 				(BlendMode.Factor)reader.ReadInt32(),
 				(BlendMode.Equation)reader.ReadInt32());
 			IsTerrain = reader.ReadBoolean();
-			IsStatic = reader.ReadBoolean();
+			Layer = reader.ReadInt32();
 		}
 
 		public override void InitComponent(ref RendererComponent component)
@@ -60,8 +60,9 @@ namespace Engine
 			component.Sprite = Sprite;
 			component.Shader = Shader;
 			component.BlendMode = BlendMode;
+			component.Layer = Layer;
 			component.IsTerrain = IsTerrain;
-			component.IsStatic = IsStatic;
+			component.IsRegistered = false;
 		}
 	}
 }
