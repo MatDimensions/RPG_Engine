@@ -7,7 +7,8 @@ namespace Engine
 		public Sprite Sprite;
 		public Shader Shader;
 		public BlendMode BlendMode;
+		public int Layer;
 		public bool IsTerrain;
-		public bool IsStatic;
+		internal bool IsRegistered;
 	}
 }

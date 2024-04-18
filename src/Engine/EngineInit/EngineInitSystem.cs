@@ -18,11 +18,13 @@ namespace Engine
 			SpriteUtility.Init();
 			ShaderUtility.Init();
 			InputUtility.Init();
+			RendererUtility.Init();
 
 			Camera.Init(Vector2f.Zero, 1f);
 			EngineData.Window = new RenderWindow(new VideoMode(EngineConfig.BaseWindowSize.X, EngineConfig.BaseWindowSize.Y), "Game");
 			EngineData.WindowSize = EngineConfig.BaseWindowSize;
 			EngineData.Window.Closed += RendererSystem.CloseWindow;
+
 			//EngineData.Window.SetFramerateLimit(60);
 		}
 	}
