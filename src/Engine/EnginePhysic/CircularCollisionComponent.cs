@@ -8,6 +8,5 @@ namespace Engine
 		public Vector2f CenterOffset;
 		public float Radius;
 		public bool IsColliding;
-		public ICollider Collider;
 	}
 }

@@ -3,13 +3,29 @@ using Engine.Colliders;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using SFML.System;
+using System.Runtime.InteropServices;
 
 namespace Game
 {
 	public static class Program
 	{
+		[DllImport("kernel32.dll")]
+		static extern IntPtr GetConsoleWindow();
+
+		[DllImport("user32.dll")]
+		static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+		const int SW_HIDE = 0;
+		const int SW_SHOW = 5;
+
 		public static void Main()
 		{
+			var handle = GetConsoleWindow();
+#if DEBUG
+			ShowWindow(handle, SW_SHOW);
+#else
+			ShowWindow(handle, SW_HIDE);
+#endif
 			EcsWorld world = new EcsWorld();
 			EcsSystems systems = new EcsSystems(world);
 			Clock clock = new Clock();

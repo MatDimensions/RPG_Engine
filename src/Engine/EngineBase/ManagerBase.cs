@@ -18,14 +18,29 @@ namespace Engine
 			if (Instance == null)
 			{
 #endif
-			Instance = new T();
-			(Instance as ManagerBase<T>).InitInstance();
+				Instance = new T();
+				(Instance as ManagerBase<T>).InitInstance();
+#if DEBUG
+			}
+#endif
+		}
+
+		public static void Destroy()
+		{
+#if DEBUG
+			if (Instance != null)
+			{
+#endif
+				(Instance as ManagerBase<T>).DestroyInstance();
+				Instance = null;
 #if DEBUG
 			}
 #endif
 		}
 
 		protected abstract void InitInstance();
+
+		protected abstract void DestroyInstance();
 
 		#endregion
 	}

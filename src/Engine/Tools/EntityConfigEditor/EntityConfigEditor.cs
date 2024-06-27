@@ -2,9 +2,7 @@ using Engine;
 using Game;
 using SFML.Graphics;
 using SFML.System;
-using System.Diagnostics;
 using System.Reflection;
-using System.Runtime.Remoting;
 
 namespace EntityConfigEditor
 {
@@ -206,26 +204,6 @@ namespace EntityConfigEditor
 						saveFields += () =>
 						{
 							field.SetValue(currentEntityConfig.GetType().GetField(componentConfig.Name).GetValue(currentEntityConfig), ShaderUtility.GetShader(box.Text));
-						};
-						panel.Controls.Add(box);
-					}
-					else if (field.FieldType.IsAssignableTo(typeof(ICollider)))
-					{
-						TextBox box = new TextBox();
-						box.Size = new Size(250, 20);
-						box.Location = new Point(150, 25 * index);
-						ICollider collider = (ICollider)field.GetValue(currentEntityConfig.GetType().GetField(componentConfig.Name).GetValue(currentEntityConfig));
-						box.Text = collider == null ? "null" : collider.GetType().UnderlyingSystemType.FullName;
-						saveFields += () =>
-						{
-							string typeName = box.Text;
-							ICollider collider = null;
-							if (!string.Equals(typeName, "null"))
-							{
-								ObjectHandle? oh = Activator.CreateInstance("EnginePhysic", typeName);
-								collider = typeName == "null" ? null : (ICollider)oh.Unwrap();
-							}
-							field.SetValue(currentEntityConfig.GetType().GetField(componentConfig.Name).GetValue(currentEntityConfig), collider);
 						};
 						panel.Controls.Add(box);
 					}

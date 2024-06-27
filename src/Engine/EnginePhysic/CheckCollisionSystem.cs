@@ -8,9 +8,7 @@ namespace Engine
 	{
 		public void Init(IEcsSystems systems)
 		{
-#if COLLIDE_ENTITY
 			m_collideEntityConfig = new();
-#endif
 		}
 
 		public void Run(IEcsSystems systems)
@@ -31,17 +29,11 @@ namespace Engine
 					{
 						firstCircularCollisionComp.IsColliding = true;
 						secondCircularCollisionComp.IsColliding = true;
-#if COLLIDE_ENTITY
+
 						ref CollideComponent collideComp = ref m_collidePool.Value.Get(m_collideEntityConfig.CreateEntity(m_world.Value));
 						collideComp.FirstEntity = m_world.Value.PackEntity(entities[i]);
 						collideComp.SecondEntity = m_world.Value.PackEntity(entities[j]);
-#endif
-#if CALL_COLLIDER_WHEN_COLLIDE
-						EcsPackedEntityWithWorld firstEntityPacked = m_world.Value.PackEntityWithWorld(entities[i]);
-						EcsPackedEntityWithWorld secondEntityPacked = m_world.Value.PackEntityWithWorld(entities[j]);
-						firstCircularCollisionComp.Collider?.Collide(ref firstEntityPacked, ref secondEntityPacked);
-						secondCircularCollisionComp.Collider?.Collide(ref secondEntityPacked, ref firstEntityPacked);
-#endif
+
 					}
 				}
 			}
@@ -55,13 +47,13 @@ namespace Engine
 		}
 
 		private EcsWorldInject m_world;
+
 		private EcsFilterInject<Inc<TransformComponent, CircularCollisionComponent>> m_circularFilter;
+
 		private EcsPoolInject<TransformComponent> m_transformPool;
 		private EcsPoolInject<CircularCollisionComponent> m_circularCollisionPool;
-#if COLLIDE_ENTITY
 		private EcsPoolInject<CollideComponent> m_collidePool;
 
 		private CollideEntityConfig m_collideEntityConfig;
-#endif
 	}
 }
