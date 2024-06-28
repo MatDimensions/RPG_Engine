@@ -62,7 +62,8 @@
 				for (int i = 0; i < SpritesNumber; ++i)
 				{
 					SpritesNames[i] = "../" + definitionDirectory + sr.ReadLine();
-					SpriteUtility.LoadSprite(SpritesNames[i]);
+					if (!SpriteUtility.IsSpriteLoad(SpritesNames[i]))
+						SpriteUtility.LoadSprite(SpritesNames[i]);
 				}
 			}
 		}
