@@ -1,5 +1,115 @@
 Start of the game
-fps : 1
-fps : 1463
-fps : 2950
-fps : 2512
+[Error] Try to get a non load sprite with texture ../Animations/Bird/Textures/birds2_01.png
+   at Engine.SpriteUtility.GetSprite(String textureName) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Renderer\SpriteUtility.cs:line 80
+   at AnimationTool.AnimationTool.AddSpriteToList(String[] files, Char splitSymbol) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\AnimationTool.cs:line 240
+   at AnimationTool.AnimationTool.Load_Click(Object sender, EventArgs e) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\AnimationTool.cs:line 187
+   at System.Windows.Forms.ToolStripMenuItem.OnClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleMouseUp(MouseEventArgs e)
+   at System.Windows.Forms.ToolStrip.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.ToolStripDropDown.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ToolStrip.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, MessageId msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.ComponentManager.Microsoft.Office.IMsoComponentManager.FPushMessageLoop(UIntPtr dwComponentID, msoloop uReason, Void* pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(msoloop reason, ApplicationContext context)
+   at AnimationTool.Program.Main() in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\Program.cs:line 14
+
+[Error] Load the sprite at a non optimal moment, this shouldn't happen, use LoadSprite before at an optimal moment
+   at Engine.SpriteUtility.GetSprite(String textureName) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Renderer\SpriteUtility.cs:line 81
+   at AnimationTool.AnimationTool.AddSpriteToList(String[] files, Char splitSymbol) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\AnimationTool.cs:line 240
+   at AnimationTool.AnimationTool.Load_Click(Object sender, EventArgs e) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\AnimationTool.cs:line 187
+   at System.Windows.Forms.ToolStripMenuItem.OnClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleMouseUp(MouseEventArgs e)
+   at System.Windows.Forms.ToolStrip.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.ToolStripDropDown.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ToolStrip.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, MessageId msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.ComponentManager.Microsoft.Office.IMsoComponentManager.FPushMessageLoop(UIntPtr dwComponentID, msoloop uReason, Void* pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(msoloop reason, ApplicationContext context)
+   at AnimationTool.Program.Main() in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\Program.cs:line 14
+
+[Error] Try to get a non load sprite with texture ../Animations/Bird/Textures/birds2_05.png
+   at Engine.SpriteUtility.GetSprite(String textureName) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Renderer\SpriteUtility.cs:line 80
+   at AnimationTool.AnimationTool.AddSpriteToList(String[] files, Char splitSymbol) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\AnimationTool.cs:line 240
+   at AnimationTool.AnimationTool.Load_Click(Object sender, EventArgs e) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\AnimationTool.cs:line 187
+   at System.Windows.Forms.ToolStripMenuItem.OnClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleMouseUp(MouseEventArgs e)
+   at System.Windows.Forms.ToolStrip.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.ToolStripDropDown.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ToolStrip.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, MessageId msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.ComponentManager.Microsoft.Office.IMsoComponentManager.FPushMessageLoop(UIntPtr dwComponentID, msoloop uReason, Void* pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(msoloop reason, ApplicationContext context)
+   at AnimationTool.Program.Main() in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\Program.cs:line 14
+
+[Error] Load the sprite at a non optimal moment, this shouldn't happen, use LoadSprite before at an optimal moment
+   at Engine.SpriteUtility.GetSprite(String textureName) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Renderer\SpriteUtility.cs:line 81
+   at AnimationTool.AnimationTool.AddSpriteToList(String[] files, Char splitSymbol) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\AnimationTool.cs:line 240
+   at AnimationTool.AnimationTool.Load_Click(Object sender, EventArgs e) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\AnimationTool.cs:line 187
+   at System.Windows.Forms.ToolStripMenuItem.OnClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleMouseUp(MouseEventArgs e)
+   at System.Windows.Forms.ToolStrip.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.ToolStripDropDown.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ToolStrip.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, MessageId msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.ComponentManager.Microsoft.Office.IMsoComponentManager.FPushMessageLoop(UIntPtr dwComponentID, msoloop uReason, Void* pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(msoloop reason, ApplicationContext context)
+   at AnimationTool.Program.Main() in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\Program.cs:line 14
+
+[Error] Try to get a non load sprite with texture ../Animations/Bird/Textures/birds2_09.png
+   at Engine.SpriteUtility.GetSprite(String textureName) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Renderer\SpriteUtility.cs:line 80
+   at AnimationTool.AnimationTool.AddSpriteToList(String[] files, Char splitSymbol) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\AnimationTool.cs:line 240
+   at AnimationTool.AnimationTool.Load_Click(Object sender, EventArgs e) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\AnimationTool.cs:line 187
+   at System.Windows.Forms.ToolStripMenuItem.OnClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleMouseUp(MouseEventArgs e)
+   at System.Windows.Forms.ToolStrip.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.ToolStripDropDown.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ToolStrip.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, MessageId msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.ComponentManager.Microsoft.Office.IMsoComponentManager.FPushMessageLoop(UIntPtr dwComponentID, msoloop uReason, Void* pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(msoloop reason, ApplicationContext context)
+   at AnimationTool.Program.Main() in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\Program.cs:line 14
+
+[Error] Load the sprite at a non optimal moment, this shouldn't happen, use LoadSprite before at an optimal moment
+   at Engine.SpriteUtility.GetSprite(String textureName) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Renderer\SpriteUtility.cs:line 81
+   at AnimationTool.AnimationTool.AddSpriteToList(String[] files, Char splitSymbol) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\AnimationTool.cs:line 240
+   at AnimationTool.AnimationTool.Load_Click(Object sender, EventArgs e) in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\AnimationTool.cs:line 187
+   at System.Windows.Forms.ToolStripMenuItem.OnClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleMouseUp(MouseEventArgs e)
+   at System.Windows.Forms.ToolStrip.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.ToolStripDropDown.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ToolStrip.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(HWND hWnd, MessageId msg, WPARAM wparam, LPARAM lparam)
+   at Windows.Win32.PInvoke.DispatchMessage(MSG* lpMsg)
+   at System.Windows.Forms.Application.ComponentManager.Microsoft.Office.IMsoComponentManager.FPushMessageLoop(UIntPtr dwComponentID, msoloop uReason, Void* pvLoopData)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(msoloop reason, ApplicationContext context)
+   at System.Windows.Forms.Application.ThreadContext.RunMessageLoop(msoloop reason, ApplicationContext context)
+   at AnimationTool.Program.Main() in C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\Program.cs:line 14
+
