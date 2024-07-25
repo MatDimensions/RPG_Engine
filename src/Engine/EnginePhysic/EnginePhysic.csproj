@@ -9,12 +9,10 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<IsAotCompatible>True</IsAotCompatible>
-		<DefineConstants>$(DefineConstants);COLLIDE_ENTITY</DefineConstants>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<IsAotCompatible>True</IsAotCompatible>
-		<DefineConstants>$(DefineConstants);COLLIDE_ENTITY</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

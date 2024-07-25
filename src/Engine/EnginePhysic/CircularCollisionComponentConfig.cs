@@ -1,5 +1,4 @@
 ﻿using SFML.System;
-using System.Runtime.Remoting;
 
 namespace Engine
 {
@@ -14,7 +13,6 @@ namespace Engine
 			writer.Write(CenterOffset.X);
 			writer.Write(CenterOffset.Y);
 			writer.Write(Radius);
-			writer.Write(Collider == null ? "null" : Collider.GetType().UnderlyingSystemType.FullName);
 		}
 
 		public override void Deserialize(BinaryReader reader)
@@ -22,21 +20,12 @@ namespace Engine
 			CenterOffset.X = reader.ReadSingle();
 			CenterOffset.Y = reader.ReadSingle();
 			Radius = reader.ReadSingle();
-			string typeName = reader.ReadString();
-			if (!string.Equals(typeName, "null"))
-			{
-				ObjectHandle? oh = Activator.CreateInstance(null, typeName);
-				Collider = (ICollider)oh.Unwrap();
-			}
-			else
-				Collider = null;
 		}
 
 		public override void InitComponent(ref CircularCollisionComponent component)
 		{
 			component.CenterOffset = CenterOffset;
 			component.Radius = Radius;
-			component.Collider = Collider;
 			component.IsColliding = false;
 		}
 	}
