@@ -49,7 +49,7 @@
 			{
 				string firstLine = sr.ReadLine();
 				string[] splitLine = firstLine.Split(' ');
-				if (!splitLine[0].Contains("ANIM"))
+				if (!splitLine[0].Contains("ANIM") || splitLine[0].Contains("MULTI") || splitLine.Contains("TIMED"))
 				{
 					Debug.LogError("Can't read definition file of anim : " + definitionDirectory + definitionFile);
 					return;
