@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AnimationTool")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4fa37d442572f64c0ec89b2196ba844c19fe6796")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+42e0eaca7f327fd6cf39d8eff3f260a3b3c10a6c")]
 [assembly: System.Reflection.AssemblyProductAttribute("AnimationTool")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AnimationTool")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

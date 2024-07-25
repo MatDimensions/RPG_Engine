@@ -1,7 +1,6 @@
 ﻿using Engine;
 using SFML.Graphics;
 using SFML.System;
-using System.Linq;
 using System.Text;
 
 namespace AnimationTool
@@ -149,6 +148,7 @@ namespace AnimationTool
 					if (!splitLine[0].Contains("ANIM") || splitLine[0].Contains("MULTI") || splitLine.Contains("TIMED"))
 					{
 						MessageBox.Show("Can't read this file as an Animation definition File");
+						return;
 					}
 
 					AnimationTimeBox.Text = splitLine[2];
@@ -325,9 +325,6 @@ namespace AnimationTool
 				return;
 			StopThread();
 			m_threadRunning = true;
-			m_imagesListAnimation.Clear();
-			foreach (AnimationPart part in m_animationParts)
-				m_imagesListAnimation.Add(m_imagesDictionary[part.SpriteName]);
 			m_thread = new Thread(AnimationThreadFunction);
 			m_thread.Start();
 		}
@@ -345,14 +342,18 @@ namespace AnimationTool
 		{
 			Clock clock = new();
 			float timer = 0f;
+			int currentSprite = 0;
 			while (m_threadRunning)
 			{
 				try
 				{
 					timer += clock.Restart().AsSeconds();
-					if (timer > float.Parse(AnimationTimeBox.Text))
+					if (timer > float.Parse(AnimationTimeBox.Text) / m_animationParts.Count)
+					{
 						timer = 0f;
-					pictureBox.Image = m_imagesListAnimation[(int)(timer * m_imagesListAnimation.Count / float.Parse(AnimationTimeBox.Text))];
+						currentSprite = currentSprite + 1 >= m_animationParts.Count ? 0 : currentSprite + 1;
+					}
+					pictureBox.Image = m_imagesDictionary[m_animationParts[currentSprite].SpriteName];
 				}
 				catch (Exception e)
 				{
@@ -370,7 +371,6 @@ namespace AnimationTool
 		private Thread m_thread;
 		private bool m_threadRunning;
 		private Dictionary<string, System.Drawing.Image> m_imagesDictionary = new Dictionary<string, System.Drawing.Image>();
-		private List<System.Drawing.Image> m_imagesListAnimation = new List<System.Drawing.Image>();
 		#endregion
 	}
 }
