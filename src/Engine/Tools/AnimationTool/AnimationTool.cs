@@ -307,7 +307,9 @@ namespace AnimationTool
 		void RemoveSpriteToAnimation(AnimationPart part)
 		{
 			panelAnim.Controls.Remove(part.SpriteLabel);
+			part.SpriteLabel.Dispose();
 			panelAnim.Controls.Remove(part.SpriteButton);
+			part.SpriteButton.Dispose();
 			m_animationParts.RemoveAt(part.SpritePosition);
 			for (int pos = 0; pos < m_animationParts.Count; ++pos)
 			{

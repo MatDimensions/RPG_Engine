@@ -150,7 +150,7 @@ namespace AnimationTool
 					string[] splitLine = firstLine.Split(' ');
 					if (!splitLine[0].Contains("TIMED_ANIM") || splitLine[0].Contains("MULTI"))
 					{
-						MessageBox.Show("Can't read this file as an Animation definition File");
+						MessageBox.Show("Can't read this file as a TimedAnimation definition File");
 						return;
 					}
 
@@ -322,8 +322,11 @@ namespace AnimationTool
 		void RemoveSpriteToAnimation(AnimationPart part)
 		{
 			panelAnim.Controls.Remove(part.SpriteLabel);
+			part.SpriteLabel.Dispose();
 			panelAnim.Controls.Remove(part.SpriteButton);
+			part.SpriteButton.Dispose();
 			panelAnim.Controls.Remove(part.SpriteTime);
+			part.SpriteTime.Dispose();
 			m_animationParts.RemoveAt(part.SpritePosition);
 			for (int pos = 0; pos < m_animationParts.Count; ++pos)
 			{

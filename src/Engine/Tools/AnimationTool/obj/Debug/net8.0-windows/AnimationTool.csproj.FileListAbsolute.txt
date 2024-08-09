@@ -94,3 +94,4 @@ C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\An
 C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\bin\Debug\net8.0-windows\SFML.Window.xml
 C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\obj\Debug\net8.0-windows\AnimationTool.csproj.AssemblyReference.cache
 C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\obj\Debug\net8.0-windows\AnimationTool.csproj.CopyComplete
+C:\Users\guill\bureau\perso\projets_perso\SFML_NET\Test\Game\src\Engine\Tools\AnimationTool\obj\Debug\net8.0-windows\AnimationTool.MultiAnimationTool.resources

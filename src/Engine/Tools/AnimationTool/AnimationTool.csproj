@@ -12,4 +12,10 @@
     <ProjectReference Include="..\..\Renderer\EngineRenderer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="MultiAnimationTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

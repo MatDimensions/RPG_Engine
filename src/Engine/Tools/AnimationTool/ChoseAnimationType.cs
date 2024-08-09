@@ -29,7 +29,9 @@ namespace AnimationTool
 					this.Hide();
 					break;
 				case 2:
-
+					MultiAnimationTool multianimationTool = new MultiAnimationTool(this);
+					multianimationTool.Show();
+					this.Hide();
 					break;
 				case 3:
 
