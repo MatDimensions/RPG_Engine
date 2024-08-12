@@ -34,7 +34,9 @@ namespace AnimationTool
 					this.Hide();
 					break;
 				case 3:
-
+					MultiTimedAnimationTool multiTimedAnimationTool = new MultiTimedAnimationTool(this);
+					multiTimedAnimationTool.Show();
+					this.Hide();
 					break;
 				default:
 					break;
