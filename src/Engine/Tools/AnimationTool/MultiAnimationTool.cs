@@ -114,8 +114,22 @@ namespace AnimationTool
 
 			saveFileDialog.DefaultExt = ".anim";
 			saveFileDialog.Filter = "Animation file (*.anim)|*.anim";
-			if (m_animations.Count == 0 || saveFileDialog.ShowDialog() != DialogResult.OK)
+			if (m_animations.Count == 0)
+			{
+				MessageBox.Show("Can't save without animation");
 				return;
+			}
+			if (saveFileDialog.ShowDialog() != DialogResult.OK)
+				return;
+
+			foreach (Animation anim in m_animations)
+			{
+				if (anim.parts.Count == 0)
+				{
+					MessageBox.Show("Can't save with an animation without sprites : " + anim.AnimationName);
+					return;
+				}
+			}
 
 			string fileName = saveFileDialog.FileName;
 			string directoryName = "";
@@ -177,7 +191,6 @@ namespace AnimationTool
 			}
 		}
 
-		//TODO
 		private void Load_Click(object sender, EventArgs e)
 		{
 			openFileDialog.Multiselect = false;
@@ -383,7 +396,7 @@ namespace AnimationTool
 
 				Button btn = new Button();
 				btn.Text = "Add";
-				btn.Location = new Point(300, YPosition);
+				btn.Location = new Point(picBox.Width + 300, YPosition);
 				btn.TabIndex = 0;
 				btn.Click += (object? sender, EventArgs e) => AddSpriteToAnimation(name);
 
@@ -545,7 +558,6 @@ namespace AnimationTool
 		private Form m_parent;
 		private int m_spriteNumber;
 
-		private List<AnimationPart> m_animationParts = new List<AnimationPart>();
 		private List<Animation> m_animations = new();
 		private int m_currentAnimation = 0;
 

@@ -79,7 +79,12 @@ namespace AnimationTool
 		{
 			saveFileDialog.DefaultExt = ".anim";
 			saveFileDialog.Filter = "Animation file (*.anim)|*.anim";
-			if (m_animationParts.Count == 0 || saveFileDialog.ShowDialog() != DialogResult.OK)
+			if (m_animationParts.Count == 0)
+			{
+				MessageBox.Show("Can't save an animation without sprite");
+				return;
+			}
+			if (saveFileDialog.ShowDialog() != DialogResult.OK)
 				return;
 
 			string fileName = saveFileDialog.FileName;
@@ -261,7 +266,7 @@ namespace AnimationTool
 
 				Button btn = new Button();
 				btn.Text = "Add";
-				btn.Location = new Point(300, YPosition);
+				btn.Location = new Point(picBox.Width + 300, YPosition);
 				btn.TabIndex = 0;
 				btn.Click += (object? sender, EventArgs e) => AddSpriteToAnimation(name);
 

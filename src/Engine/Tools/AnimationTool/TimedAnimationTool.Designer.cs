@@ -43,9 +43,19 @@
 			pictureBox = new PictureBox();
 			panelImage = new Panel();
 			panelAnim = new Panel();
+			splitContainer1 = new SplitContainer();
+			splitContainer2 = new SplitContainer();
 			menuStrip.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
 			panelImage.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+			splitContainer1.Panel1.SuspendLayout();
+			splitContainer1.Panel2.SuspendLayout();
+			splitContainer1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
+			splitContainer2.Panel1.SuspendLayout();
+			splitContainer2.Panel2.SuspendLayout();
+			splitContainer2.SuspendLayout();
 			SuspendLayout();
 			// 
 			// openFileDialog
@@ -54,11 +64,11 @@
 			// 
 			// panelSprites
 			// 
-			panelSprites.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+			panelSprites.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 			panelSprites.BorderStyle = BorderStyle.Fixed3D;
-			panelSprites.Location = new Point(393, 218);
+			panelSprites.Location = new Point(3, 3);
 			panelSprites.Name = "panelSprites";
-			panelSprites.Size = new Size(395, 220);
+			panelSprites.Size = new Size(421, 215);
 			panelSprites.TabIndex = 7;
 			// 
 			// stopAnimationToolStripMenuItem
@@ -92,14 +102,14 @@
 			// saveToolStripMenuItem
 			// 
 			saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			saveToolStripMenuItem.Size = new Size(180, 22);
+			saveToolStripMenuItem.Size = new Size(100, 22);
 			saveToolStripMenuItem.Text = "Save";
 			saveToolStripMenuItem.Click += Save_Click;
 			// 
 			// loadToolStripMenuItem
 			// 
 			loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-			loadToolStripMenuItem.Size = new Size(180, 22);
+			loadToolStripMenuItem.Size = new Size(100, 22);
 			loadToolStripMenuItem.Text = "Load";
 			loadToolStripMenuItem.Click += Load_Click;
 			// 
@@ -117,7 +127,7 @@
 			menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, addSpritesToolStripMenuItem, removeDuplicates, invertListToolStripMenuItem, startAnimationToolStripMenuItem, stopAnimationToolStripMenuItem });
 			menuStrip.Location = new Point(0, 0);
 			menuStrip.Name = "menuStrip";
-			menuStrip.Size = new Size(635, 24);
+			menuStrip.Size = new Size(515, 24);
 			menuStrip.TabIndex = 8;
 			menuStrip.Text = "menuStrip";
 			// 
@@ -130,46 +140,88 @@
 			// 
 			// pictureBox
 			// 
+			pictureBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 			pictureBox.Location = new Point(3, 3);
 			pictureBox.Name = "pictureBox";
-			pictureBox.Size = new Size(385, 175);
+			pictureBox.Size = new Size(411, 175);
 			pictureBox.TabIndex = 0;
 			pictureBox.TabStop = false;
 			// 
 			// panelImage
 			// 
-			panelImage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+			panelImage.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 			panelImage.BorderStyle = BorderStyle.Fixed3D;
 			panelImage.Controls.Add(pictureBox);
-			panelImage.Location = new Point(393, 27);
+			panelImage.Location = new Point(3, 3);
 			panelImage.Name = "panelImage";
-			panelImage.Size = new Size(395, 185);
+			panelImage.Size = new Size(421, 185);
 			panelImage.TabIndex = 6;
 			// 
 			// panelAnim
 			// 
 			panelAnim.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 			panelAnim.BorderStyle = BorderStyle.Fixed3D;
-			panelAnim.Location = new Point(12, 27);
+			panelAnim.Location = new Point(3, 3);
 			panelAnim.Name = "panelAnim";
-			panelAnim.Size = new Size(375, 411);
+			panelAnim.Size = new Size(362, 414);
 			panelAnim.TabIndex = 5;
+			// 
+			// splitContainer1
+			// 
+			splitContainer1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+			splitContainer1.Location = new Point(0, 27);
+			splitContainer1.Name = "splitContainer1";
+			// 
+			// splitContainer1.Panel1
+			// 
+			splitContainer1.Panel1.Controls.Add(panelAnim);
+			// 
+			// splitContainer1.Panel2
+			// 
+			splitContainer1.Panel2.Controls.Add(splitContainer2);
+			splitContainer1.Size = new Size(799, 420);
+			splitContainer1.SplitterDistance = 368;
+			splitContainer1.TabIndex = 9;
+			// 
+			// splitContainer2
+			// 
+			splitContainer2.Dock = DockStyle.Fill;
+			splitContainer2.Location = new Point(0, 0);
+			splitContainer2.Name = "splitContainer2";
+			splitContainer2.Orientation = Orientation.Horizontal;
+			// 
+			// splitContainer2.Panel1
+			// 
+			splitContainer2.Panel1.Controls.Add(panelImage);
+			// 
+			// splitContainer2.Panel2
+			// 
+			splitContainer2.Panel2.Controls.Add(panelSprites);
+			splitContainer2.Size = new Size(427, 420);
+			splitContainer2.SplitterDistance = 195;
+			splitContainer2.TabIndex = 0;
 			// 
 			// TimedAnimationTool
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(800, 450);
-			Controls.Add(panelSprites);
+			Controls.Add(splitContainer1);
 			Controls.Add(menuStrip);
-			Controls.Add(panelImage);
-			Controls.Add(panelAnim);
 			Name = "TimedAnimationTool";
 			Text = "TimedAnimationTool";
 			menuStrip.ResumeLayout(false);
 			menuStrip.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
 			panelImage.ResumeLayout(false);
+			splitContainer1.Panel1.ResumeLayout(false);
+			splitContainer1.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+			splitContainer1.ResumeLayout(false);
+			splitContainer2.Panel1.ResumeLayout(false);
+			splitContainer2.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
+			splitContainer2.ResumeLayout(false);
 			ResumeLayout(false);
 			PerformLayout();
 		}
@@ -190,5 +242,7 @@
 		private PictureBox pictureBox;
 		private Panel panelImage;
 		private Panel panelAnim;
+		private SplitContainer splitContainer1;
+		private SplitContainer splitContainer2;
 	}
 }
