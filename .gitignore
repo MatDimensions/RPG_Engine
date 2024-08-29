@@ -53,3 +53,7 @@ src/Engine/Tools/EntityConfigEditor/obj/
 src/Engine/Tools/EntityConfigEditor/bin/Debug/
 
 src/Engine/Tools/EntityConfigEditor/bin/
+
+src/Engine/Tools/AnimationTool/obj/
+
+src/Engine/Tools/AnimationTool/bin/

@@ -49,7 +49,7 @@
 			{
 				string firstLine = sr.ReadLine();
 				string[] splitLine = firstLine.Split(' ');
-				if (!splitLine[0].Contains("ANIM"))
+				if (!splitLine[0].Contains("ANIM") || splitLine[0].Contains("MULTI") || splitLine.Contains("TIMED"))
 				{
 					Debug.LogError("Can't read definition file of anim : " + definitionDirectory + definitionFile);
 					return;
@@ -62,7 +62,8 @@
 				for (int i = 0; i < SpritesNumber; ++i)
 				{
 					SpritesNames[i] = "../" + definitionDirectory + sr.ReadLine();
-					SpriteUtility.LoadSprite(SpritesNames[i]);
+					if (!SpriteUtility.IsSpriteLoad(SpritesNames[i]))
+						SpriteUtility.LoadSprite(SpritesNames[i]);
 				}
 			}
 		}

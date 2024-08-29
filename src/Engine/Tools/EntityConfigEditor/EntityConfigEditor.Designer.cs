@@ -33,10 +33,10 @@
 			openFileDialog = new OpenFileDialog();
 			toolStrip = new ToolStrip();
 			toolStripDropDownButton = new ToolStripDropDownButton();
+			testToolStripMenuItem = new ToolStripMenuItem();
 			createNewEntityConfigToolStripMenuItem = new ToolStripMenuItem();
 			toolStripMenuItem1 = new ToolStripMenuItem();
 			saveEntityConfigToolStripMenuItem = new ToolStripMenuItem();
-			testToolStripMenuItem = new ToolStripMenuItem();
 			panel = new Panel();
 			toolStrip.SuspendLayout();
 			SuspendLayout();
@@ -65,6 +65,13 @@
 			toolStripDropDownButton.Text = "File";
 			toolStripDropDownButton.ToolTipText = "File";
 			// 
+			// testToolStripMenuItem
+			// 
+			testToolStripMenuItem.Name = "testToolStripMenuItem";
+			testToolStripMenuItem.Size = new Size(205, 22);
+			testToolStripMenuItem.Text = "Change Config Selected";
+			testToolStripMenuItem.Click += ChangeEntityConfigSelected;
+			// 
 			// createNewEntityConfigToolStripMenuItem
 			// 
 			createNewEntityConfigToolStripMenuItem.Name = "createNewEntityConfigToolStripMenuItem";
@@ -86,13 +93,6 @@
 			saveEntityConfigToolStripMenuItem.Text = "Save Entity Config";
 			saveEntityConfigToolStripMenuItem.Click += SaveEntityConfig;
 			// 
-			// testToolStripMenuItem
-			// 
-			testToolStripMenuItem.Name = "testToolStripMenuItem";
-			testToolStripMenuItem.Size = new Size(205, 22);
-			testToolStripMenuItem.Text = "Change Config Selected";
-			testToolStripMenuItem.Click += ChangeEntityConfigSelected;
-			// 
 			// panel
 			// 
 			panel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -109,6 +109,7 @@
 			ClientSize = new Size(800, 450);
 			Controls.Add(panel);
 			Controls.Add(toolStrip);
+			MaximizeBox = false;
 			Name = "EntityConfigEditor";
 			Text = "EntityConfigEditor";
 			toolStrip.ResumeLayout(false);
