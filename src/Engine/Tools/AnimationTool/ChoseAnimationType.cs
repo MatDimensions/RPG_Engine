@@ -38,6 +38,11 @@ namespace AnimationTool
 					multiTimedAnimationTool.Show();
 					this.Hide();
 					break;
+				case 4:
+					AnimationConverter animationConverter = new AnimationConverter(this);
+					animationConverter.Show();
+					this.Hide();
+					break;
 				default:
 					break;
 			}

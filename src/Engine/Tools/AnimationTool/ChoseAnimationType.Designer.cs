@@ -35,7 +35,7 @@
 			// comboBox
 			// 
 			comboBox.FormattingEnabled = true;
-			comboBox.Items.AddRange(new object[] { "Animation", "TimedAnimation", "MultiAnimation", "MultiTimedAnimation" });
+			comboBox.Items.AddRange(new object[] { "Animation", "TimedAnimation", "MultiAnimation", "MultiTimedAnimation", "Converter" });
 			comboBox.Location = new Point(12, 12);
 			comboBox.Name = "comboBox";
 			comboBox.Size = new Size(193, 23);
