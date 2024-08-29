@@ -52,7 +52,7 @@
 			{
 				string line = sr.ReadLine();
 				string[] splitLine = line.Split(' ');
-				if (!splitLine[0].Contains("TIMED_ANIM"))
+				if (!splitLine[0].Contains("TIMED_ANIM") || splitLine.Contains("MULTI"))
 				{
 					Debug.LogError("Can't read definition file of timed anim : " + definitionDirectory + definitionFile);
 					return;
@@ -69,7 +69,8 @@
 					splitLine = line.Split(' ');
 					SpritesNames[i] = "../" + definitionDirectory + splitLine[0];
 					SpritesTime[i] = float.Parse(splitLine[1]);
-					SpriteUtility.LoadSprite(SpritesNames[i]);
+					if (!SpriteUtility.IsSpriteLoad(SpritesNames[i]))
+						SpriteUtility.LoadSprite(SpritesNames[i]);
 				}
 			}
 		}
